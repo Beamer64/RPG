@@ -113,7 +113,7 @@ namespace Engine
         private static void PopulateLocations()
         {
             //Creats each location
-            Location home = new Location(LOCATION_ID_HOME, "Home", "Your house. You're probably going to die alone.");
+            Location home = new Location(LOCATION_ID_HOME, "Home", "You wake up at your house hungover, confused and worried about where you got this rusty sword in your hand.");
 
             Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square", "I wonder where everyone is..");
 
@@ -162,7 +162,7 @@ namespace Engine
 
             spiderField.LocationToWest = bridge;
 
-            // Add the locations to the static list
+            // Add the locations to the list
             Locations.Add(home);
             Locations.Add(townSquare);
             Locations.Add(guardPost);
@@ -174,6 +174,7 @@ namespace Engine
             Locations.Add(spiderField);
         }
 
+        //finds item based on ID
         public static Item ItemByID(int id)
         {
             foreach(Item item in Items)
