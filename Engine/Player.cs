@@ -28,6 +28,16 @@ namespace Engine
             Quests    = new List<PlayerQuest>();
         }
 
+        //creates a new default player
+        public static Player CreateDefaultPlayer()
+        {
+            Player player = new Player(10, 10, 20, 0, 1);
+            player.Inventory.Add(new InventoryItem(World.ItemByID(World.ITEM_ID_RUSTY_SWORD), 1));
+            player.CurrentLocation = World.LocationByID(World.LOCATION_ID_HOME);
+
+            return player;
+        }
+
         //checks for required items
         public bool HasRequiredItemToEnterThisLocation(Location location)
         {
@@ -167,6 +177,6 @@ namespace Engine
                 }
             }
         }
-        
+
     }
 }

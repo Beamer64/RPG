@@ -36,7 +36,7 @@
             this.lblGold = new System.Windows.Forms.Label();
             this.lblExperience = new System.Windows.Forms.Label();
             this.lblLevel = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.selectAction = new System.Windows.Forms.Label();
             this.cboWeapons = new System.Windows.Forms.ComboBox();
             this.cboPotions = new System.Windows.Forms.ComboBox();
             this.btnUseWeapon = new System.Windows.Forms.Button();
@@ -128,15 +128,15 @@
             this.lblLevel.Size = new System.Drawing.Size(0, 13);
             this.lblLevel.TabIndex = 7;
             // 
-            // label5
+            // selectAction
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(615, 535);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Select action";
+            this.selectAction.AutoSize = true;
+            this.selectAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectAction.Location = new System.Drawing.Point(615, 535);
+            this.selectAction.Name = "selectAction";
+            this.selectAction.Size = new System.Drawing.Size(82, 13);
+            this.selectAction.TabIndex = 8;
+            this.selectAction.Text = "Select action";
             // 
             // cboWeapons
             // 
@@ -288,7 +288,7 @@
             this.Controls.Add(this.btnUseWeapon);
             this.Controls.Add(this.cboPotions);
             this.Controls.Add(this.cboWeapons);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.selectAction);
             this.Controls.Add(this.lblLevel);
             this.Controls.Add(this.lblExperience);
             this.Controls.Add(this.lblGold);
@@ -323,7 +323,7 @@
         private System.Windows.Forms.Label lblGold;
         private System.Windows.Forms.Label lblExperience;
         private System.Windows.Forms.Label lblLevel;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label selectAction;
         private System.Windows.Forms.ComboBox cboWeapons;
         private System.Windows.Forms.ComboBox cboPotions;
         private System.Windows.Forms.Button btnUseWeapon;

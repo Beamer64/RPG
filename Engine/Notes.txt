@@ -1,0 +1,10 @@
+﻿Default player function in the player class doesnt start player at the house when called from the main RPG function
+
+For just for starters, the north button doesnt move the player to the north location after checking if there even is one
+
+//Inventory items and quantity aren't showing up at the start of the game//
+
+//Text for location discription and name are overwriting eaach other//
+
+Clicking the "Use" button for weapons when finding a monster does nothing
+

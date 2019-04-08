@@ -13,15 +13,15 @@ namespace Engine
         public static readonly List<Quest>    Quests    = new List<Quest>();
         public static readonly List<Location> Locations = new List<Location>();
 
-        public const int ITEM_ID_RUSTY_SWORD    = 1;
-        public const int ITEM_ID_RAT_TAIL       = 2;
-        public const int ITEM_ID_PIECE_OF_FUR   = 3;
-        public const int ITEM_ID_SNAKE_FANG     = 4;
-        public const int ITEM_ID_SNAKESKIN      = 5;
-        public const int ITEM_ID_CLUB           = 6;
-        public const int ITEM_ID_HEALING_POTION = 7;
-        public const int ITEM_ID_SPIDER_FANG    = 8;
-        public const int ITEM_ID_SPIDER_SILK    = 9;
+        public const int ITEM_ID_RUSTY_SWORD     = 1;
+        public const int ITEM_ID_RAT_TAIL        = 2;
+        public const int ITEM_ID_PIECE_OF_FUR    = 3;
+        public const int ITEM_ID_SNAKE_FANG      = 4;
+        public const int ITEM_ID_SNAKESKIN       = 5;
+        public const int ITEM_ID_CLUB            = 6;
+        public const int ITEM_ID_HEALING_POTION  = 7;
+        public const int ITEM_ID_SPIDER_FANG     = 8;
+        public const int ITEM_ID_SPIDER_SILK     = 9;
         public const int ITEM_ID_ADVENTURER_PASS = 10;
 
         public const int MONSTER_ID_RAT          = 1;
@@ -110,27 +110,27 @@ namespace Engine
         private static void PopulateLocations()
         {
             //Creats each location
-            Location home = new Location(LOCATION_ID_HOME, "Home", "You wake up at your house hungover and confused. You are curious about this rusty sword in your hand. Everything is oddly quiet.");
+            Location home = new Location(LOCATION_ID_HOME, "Home:", "You wake up at your house hungover and confused. You are curious about this rusty sword in your hand. Everything is oddly quiet.");
 
-            Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square", "I wonder where everyone is..");
+            Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square:", "I wonder where everyone is..");
 
-            Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's hut", "There are many strange plants on the shelves.");
+            Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's hut:", "There are many strange plants on the shelves.");
             alchemistHut.QuestAvailableHere = QuestByID(QUEST_ID_CLEAR_ALCHEMIST_GARDEN);
 
-            Location alchemistsGarden = new Location(LOCATION_ID_ALCHEMISTS_GARDEN, "Alchemist's garden", "Many plants are growing here.");
+            Location alchemistsGarden = new Location(LOCATION_ID_ALCHEMISTS_GARDEN, "Alchemist's garden:", "Many plants are growing here.");
             alchemistsGarden.MonsterLivingHere = MonsterByID(MONSTER_ID_RAT);
 
-            Location farmhouse = new Location(LOCATION_ID_FARMHOUSE, "Farmhouse", "There is a small farmhouse, with a farmer in front.");
+            Location farmhouse = new Location(LOCATION_ID_FARMHOUSE, "Farmhouse:", "There is a small farmhouse, with a farmer in front.");
             farmhouse.QuestAvailableHere = QuestByID(QUEST_ID_CLEAR_FARMERS_FIELD);
 
-            Location farmersField = new Location(LOCATION_ID_FARM_FIELD, "Farmer's field", "You see rows of vegetables growing here.");
+            Location farmersField = new Location(LOCATION_ID_FARM_FIELD, "Farmer's field:", "You see rows of vegetables growing here.");
             farmersField.MonsterLivingHere = MonsterByID(MONSTER_ID_SNAKE);
 
-            Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post", "There is a large, tough-looking guard here.", ItemByID(ITEM_ID_ADVENTURER_PASS));
+            Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post:", "There is a large, tough-looking guard here.", ItemByID(ITEM_ID_ADVENTURER_PASS));
 
-            Location bridge = new Location(LOCATION_ID_BRIDGE, "Bridge", "A stone bridge crosses a wide river.");
+            Location bridge = new Location(LOCATION_ID_BRIDGE, "Bridge:", "A stone bridge crosses a wide river.");
 
-            Location spiderField = new Location(LOCATION_ID_SPIDER_FIELD, "Forest", "You see spider webs covering covering the trees in this forest.");
+            Location spiderField = new Location(LOCATION_ID_SPIDER_FIELD, "Forest:", "You see spider webs covering covering the trees in this forest.");
             spiderField.MonsterLivingHere = MonsterByID(MONSTER_ID_GIANT_SPIDER);
 
             // Link the locations together
