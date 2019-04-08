@@ -75,10 +75,7 @@ namespace Engine
             snake.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SNAKE_FANG), 75, false));
             snake.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SNAKESKIN), 75, true));
 
-            Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "Giant spider", 20, 5, 40, 10, 10);
-            giantSpider.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SPIDER_FANG), 75, true));
-            giantSpider.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SPIDER_SILK), 25, false));
-
+            Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "Giant spider", 20, 5, 40, 10, 10); 
 
             Monsters.Add(rat);
             Monsters.Add(snake);
@@ -113,7 +110,7 @@ namespace Engine
         private static void PopulateLocations()
         {
             //Creats each location
-            Location home = new Location(LOCATION_ID_HOME, "Home", "You wake up at your house hungover, confused and worried about where you got this rusty sword in your hand.");
+            Location home = new Location(LOCATION_ID_HOME, "Home", "You wake up at your house hungover and confused. You are curious about this rusty sword in your hand. Everything is oddly quiet.");
 
             Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square", "I wonder where everyone is..");
 
