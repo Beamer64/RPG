@@ -141,7 +141,7 @@ namespace Engine
             townSquare.LocationToEast  = guardPost;
             townSquare.LocationToWest  = farmhouse;
 
-            farmhouse.LocationToEast = farmhouse;
+            farmhouse.LocationToEast = townSquare;
             farmhouse.LocationToWest = farmersField;
 
             farmersField.LocationToEast = farmhouse;
