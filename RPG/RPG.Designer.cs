@@ -58,6 +58,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Brown;
             this.label1.Location = new System.Drawing.Point(18, 100);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 13);
@@ -68,6 +69,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Goldenrod;
             this.label2.Location = new System.Drawing.Point(18, 74);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
@@ -78,6 +80,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.DarkGreen;
             this.label3.Location = new System.Drawing.Point(18, 46);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 13);
@@ -97,7 +100,8 @@
             // lblHitPoints
             // 
             this.lblHitPoints.AutoSize = true;
-            this.lblHitPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHitPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHitPoints.ForeColor = System.Drawing.Color.Brown;
             this.lblHitPoints.Location = new System.Drawing.Point(110, 99);
             this.lblHitPoints.Name = "lblHitPoints";
             this.lblHitPoints.Size = new System.Drawing.Size(0, 13);
@@ -106,7 +110,8 @@
             // lblGold
             // 
             this.lblGold.AutoSize = true;
-            this.lblGold.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGold.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGold.ForeColor = System.Drawing.Color.Goldenrod;
             this.lblGold.Location = new System.Drawing.Point(110, 73);
             this.lblGold.Name = "lblGold";
             this.lblGold.Size = new System.Drawing.Size(0, 13);
@@ -115,6 +120,8 @@
             // lblExperience
             // 
             this.lblExperience.AutoSize = true;
+            this.lblExperience.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExperience.ForeColor = System.Drawing.Color.DarkGreen;
             this.lblExperience.Location = new System.Drawing.Point(110, 45);
             this.lblExperience.Name = "lblExperience";
             this.lblExperience.Size = new System.Drawing.Size(0, 13);
@@ -123,6 +130,7 @@
             // lblLevel
             // 
             this.lblLevel.AutoSize = true;
+            this.lblLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLevel.Location = new System.Drawing.Point(110, 19);
             this.lblLevel.Name = "lblLevel";
             this.lblLevel.Size = new System.Drawing.Size(0, 13);
@@ -216,7 +224,9 @@
             // 
             // rtbLocation
             // 
+            this.rtbLocation.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.rtbLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbLocation.ForeColor = System.Drawing.SystemColors.Control;
             this.rtbLocation.Location = new System.Drawing.Point(313, 19);
             this.rtbLocation.Name = "rtbLocation";
             this.rtbLocation.ReadOnly = true;
@@ -226,6 +236,7 @@
             // 
             // rtbMessages
             // 
+            this.rtbMessages.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.rtbMessages.Location = new System.Drawing.Point(313, 167);
             this.rtbMessages.Name = "rtbMessages";
             this.rtbMessages.ReadOnly = true;
@@ -246,6 +257,7 @@
             this.dgvInventory.Name = "dgvInventory";
             this.dgvInventory.ReadOnly = true;
             this.dgvInventory.RowHeadersVisible = false;
+            this.dgvInventory.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvInventory.Size = new System.Drawing.Size(275, 309);
             this.dgvInventory.TabIndex = 19;
             // 
@@ -262,12 +274,14 @@
             this.dgvQuests.Name = "dgvQuests";
             this.dgvQuests.ReadOnly = true;
             this.dgvQuests.RowHeadersVisible = false;
+            this.dgvQuests.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvQuests.Size = new System.Drawing.Size(275, 189);
             this.dgvQuests.TabIndex = 20;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(583, 639);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
@@ -280,6 +294,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.BackColor = System.Drawing.Color.SlateGray;
             this.ClientSize = new System.Drawing.Size(718, 661);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.dgvQuests);
