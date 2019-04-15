@@ -58,7 +58,7 @@
     <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Notes.txt" />
+    <Content Include="1Notes.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

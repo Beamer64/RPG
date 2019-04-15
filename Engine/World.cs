@@ -22,14 +22,14 @@ namespace Engine
         public const int ITEM_ID_HEALING_POTION  = 7;
         public const int ITEM_ID_SPIDER_FANG     = 8;
         public const int ITEM_ID_SPIDER_SILK     = 9;
-        public const int ITEM_ID_ADVENTURER_PASS = 10;
+        public const int ITEM_ID_ADVENTURER_PASS = 10;     //ITEMS LIST
 
         public const int MONSTER_ID_RAT          = 1;
         public const int MONSTER_ID_SNAKE        = 2;
-        public const int MONSTER_ID_GIANT_SPIDER = 3;
+        public const int MONSTER_ID_GIANT_SPIDER = 3;     //MONSTER LIST
 
         public const int QUEST_ID_CLEAR_ALCHEMIST_GARDEN = 1;
-        public const int QUEST_ID_CLEAR_FARMERS_FIELD    = 2;
+        public const int QUEST_ID_CLEAR_FARMERS_FIELD    = 2;     //QUEST LIST
 
         public const int LOCATION_ID_HOME              = 1;
         public const int LOCATION_ID_TOWN_SQUARE       = 2;
@@ -39,7 +39,7 @@ namespace Engine
         public const int LOCATION_ID_FARMHOUSE         = 6;
         public const int LOCATION_ID_FARM_FIELD        = 7;
         public const int LOCATION_ID_BRIDGE            = 8;
-        public const int LOCATION_ID_SPIDER_FIELD      = 9;
+        public const int LOCATION_ID_SPIDER_FIELD      = 9;     //LOCATIONS LIST
 
         static World()
         {

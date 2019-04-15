@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 using Engine;
 
@@ -17,22 +18,29 @@ namespace RPG
         private Player  _player;
         private Monster _currentMonster;
 
+        //xml file the player data will save to
+        private const string PLAYER_DATA_FILE_NAME = "PlayerData.xml";
+
         public RPG()
         {
             InitializeComponent();
 
-            //creates new player
-            _player = Player.CreateDefaultPlayer();
-            MoveTo(World.LocationByID(World.LOCATION_ID_HOME));
-
-            UpdatePlayerStats();
-
+            if (File.Exists(PLAYER_DATA_FILE_NAME))
+            {
+                _player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
+            }
+            else
+            {
+                _player = Player.CreateDefaultPlayer();
+            }
 
             //updates UI labels to show current player stats
-            lblHitPoints.Text  = _player.CurrentHitPoints.ToString();
-            lblGold.Text       = _player.Gold.ToString();
-            lblExperience.Text = _player.ExperiencePoints.ToString();
-            lblLevel.Text      = _player.Level.ToString();
+            lblHitPoints.DataBindings.Add("Text", _player, "CurrentHitPoints");
+            lblGold.DataBindings.Add("Text", _player, "Gold");
+            lblExperience.DataBindings.Add("Text", _player, "ExperiencePoints");
+            lblLevel.DataBindings.Add("Text", _player, "Level");
+
+            MoveTo(_player.CurrentLocation);
         }
 
         //you guessed it, on button click, moves the player:
@@ -92,8 +100,6 @@ namespace RPG
             //might change later to make game more difficult
             _player.CurrentHitPoints = _player.MaximumHitPoints;
 
-            //updates hit points in UI
-            lblHitPoints.Text = _player.CurrentHitPoints.ToString();
 
             //checks location for a quest.
             if (newLocation.QuestAvailableHere != null)
@@ -132,7 +138,7 @@ namespace RPG
                             rtbMessages.Text += Environment.NewLine;
                             ScrollToBottomMsg();
 
-                            _player.ExperiencePoints += newLocation.QuestAvailableHere.RewardExperiencePoints;
+                            _player.AddExperiencePoints(newLocation.QuestAvailableHere.RewardExperiencePoints);
                             _player.Gold += newLocation.QuestAvailableHere.RewardGold;
 
                             //adds reward to inventory
@@ -210,9 +216,6 @@ namespace RPG
                 selectAction.Visible = false;
             }
 
-            //update player stats
-            UpdatePlayerStats();
-
             //refresh inventory list
             UpdateInventoryListInUI();
 
@@ -289,11 +292,20 @@ namespace RPG
             }
             else
             {
+                cboWeapons.SelectedIndexChanged -= cboWeapons_SelectedIndexChanged;
                 cboWeapons.DataSource = weapons;
+                cboWeapons.SelectedIndexChanged += cboWeapons_SelectedIndexChanged;
                 cboWeapons.DisplayMember = "Name";
                 cboWeapons.ValueMember = "ID";
 
-                cboWeapons.SelectedIndex = 0;
+                if (_player.CurrentWeapon != null)
+                {
+                    cboWeapons.SelectedItem = _player.CurrentWeapon;
+                }
+                else
+                {
+                    cboWeapons.SelectedIndex = 0;
+                }
             }
         }
 
@@ -329,15 +341,6 @@ namespace RPG
             }
         }
 
-        private void UpdatePlayerStats()
-        {
-            // Refresh player information and inventory controls
-            lblHitPoints.Text = _player.CurrentHitPoints.ToString();
-            lblGold.Text = _player.Gold.ToString();
-            lblExperience.Text = _player.ExperiencePoints.ToString();
-            lblLevel.Text = _player.Level.ToString();
-        }
-
         private void btnUseWeapon_Click(object sender, EventArgs e)
         {
             // Get the currently selected weapon from the cboWeapons ComboBox
@@ -362,7 +365,7 @@ namespace RPG
                 ScrollToBottomMsg();
 
                 // Give player experience points for killing the monster
-                _player.ExperiencePoints += _currentMonster.RewardExperiencePoints;
+                _player.AddExperiencePoints(_currentMonster.RewardExperiencePoints);
                 rtbMessages.Text += "You receive " + _currentMonster.RewardExperiencePoints.ToString() + " experience points" + Environment.NewLine;
                 ScrollToBottomMsg();
 
@@ -413,12 +416,10 @@ namespace RPG
                 }
 
                 // Refresh player information and inventory controls
-                lblHitPoints.Text = _player.CurrentHitPoints.ToString();
                 lblGold.Text = _player.Gold.ToString();
                 lblExperience.Text = _player.ExperiencePoints.ToString();
                 lblLevel.Text = _player.Level.ToString();
 
-                UpdatePlayerStats();
                 UpdateInventoryListInUI();
                 UpdateWeaponListInUI();
                 UpdatePotionListInUI();
@@ -444,8 +445,6 @@ namespace RPG
                 // Subtract damage from player
                 _player.CurrentHitPoints -= damageToPlayer;
 
-                // Refresh player data in UI
-                lblHitPoints.Text = _player.CurrentHitPoints.ToString();
 
                 if (_player.CurrentHitPoints <= 0)
                 {
@@ -510,7 +509,6 @@ namespace RPG
             }
 
             // Refresh player data in UI
-            lblHitPoints.Text = _player.CurrentHitPoints.ToString();
             UpdateInventoryListInUI();
             UpdatePotionListInUI();
         }
@@ -521,6 +519,15 @@ namespace RPG
             rtbMessages.ScrollToCaret();
         }
 
+        private void cboWeapons_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _player.CurrentWeapon = (Weapon)cboWeapons.SelectedItem;
+        }
+
+        private void RPG_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            File.WriteAllText(PLAYER_DATA_FILE_NAME, _player.ToXmlString());
+        }
     }
 }
  

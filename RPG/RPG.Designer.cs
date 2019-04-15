@@ -327,6 +327,7 @@
             this.Name = "RPG";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "RPG";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RPG_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuests)).EndInit();
             this.ResumeLayout(false);
