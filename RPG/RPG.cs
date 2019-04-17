@@ -43,7 +43,7 @@ namespace RPG
             MoveTo(_player.CurrentLocation);
         }
 
-        //you guessed it, on button click, moves the player:
+        //on button click, moves the player:
         //North
         private void btnNorth_Click(object sender, EventArgs e)
         {
@@ -483,7 +483,7 @@ namespace RPG
             }
 
             // Display message
-            rtbMessages.Text += "You drink a " + potion.Name + Environment.NewLine;
+            rtbMessages.Text += "You drink a " + potion.Name + ", restoring " + potion.AmountToHeal.ToString() + " HP" + Environment.NewLine;
             ScrollToBottomMsg();
 
             // Monster gets their turn to attack
