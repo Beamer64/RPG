@@ -13,6 +13,7 @@ namespace Engine
         public static readonly List<Quest>    Quests    = new List<Quest>();
         public static readonly List<Location> Locations = new List<Location>();
 
+        //ITEMS LIST
         public const int ITEM_ID_RUSTY_SWORD     = 1;
         public const int ITEM_ID_RAT_TAIL        = 2;
         public const int ITEM_ID_PIECE_OF_FUR    = 3;
@@ -22,15 +23,20 @@ namespace Engine
         public const int ITEM_ID_HEALING_POTION  = 7;
         public const int ITEM_ID_SPIDER_FANG     = 8;
         public const int ITEM_ID_SPIDER_SILK     = 9;
-        public const int ITEM_ID_ADVENTURER_PASS = 10;     //ITEMS LIST
+        public const int ITEM_ID_ADVENTURER_PASS = 10;
 
+        public const int UNSELLABLE_ITEM_PRICE = -1;
+
+        //MONSTER LIST
         public const int MONSTER_ID_RAT          = 1;
         public const int MONSTER_ID_SNAKE        = 2;
-        public const int MONSTER_ID_GIANT_SPIDER = 3;     //MONSTER LIST
+        public const int MONSTER_ID_GIANT_SPIDER = 3;
 
+        //QUEST LIST
         public const int QUEST_ID_CLEAR_ALCHEMIST_GARDEN = 1;
-        public const int QUEST_ID_CLEAR_FARMERS_FIELD    = 2;     //QUEST LIST
+        public const int QUEST_ID_CLEAR_FARMERS_FIELD    = 2;
 
+        //LOCATIONS LIST
         public const int LOCATION_ID_HOME              = 1;
         public const int LOCATION_ID_TOWN_SQUARE       = 2;
         public const int LOCATION_ID_GUARD_POST        = 3;
@@ -39,7 +45,7 @@ namespace Engine
         public const int LOCATION_ID_FARMHOUSE         = 6;
         public const int LOCATION_ID_FARM_FIELD        = 7;
         public const int LOCATION_ID_BRIDGE            = 8;
-        public const int LOCATION_ID_SPIDER_FIELD      = 9;     //LOCATIONS LIST
+        public const int LOCATION_ID_SPIDER_FIELD      = 9;
 
         static World()
         {
@@ -51,18 +57,19 @@ namespace Engine
 
         private static void PopulateItems()
         {
-            Items.Add(new Weapon(ITEM_ID_RUSTY_SWORD, "Rusty Sword", "Rusty Swords", 0, 5));
-            Items.Add(new Weapon(ITEM_ID_CLUB, "Club", "Clubs", 3, 10));
+            Items.Add(new Weapon(ITEM_ID_RUSTY_SWORD, "Rusty Sword", "Rusty Swords", 0, 5, 5));
+            Items.Add(new Weapon(ITEM_ID_CLUB, "Club", "Clubs", 3, 10, 8));
 
-            Items.Add(new Item(ITEM_ID_RAT_TAIL, "Rat tail", "Rat tails"));
-            Items.Add(new Item(ITEM_ID_PIECE_OF_FUR, "Piece of fur", "Peices of fur"));
-            Items.Add(new Item(ITEM_ID_SNAKE_FANG, "Snake fang", "Snake fangs"));
-            Items.Add(new Item(ITEM_ID_SNAKESKIN, "Snakeskin", "Snakeskins"));
-            Items.Add(new Item(ITEM_ID_SPIDER_FANG, "Spider fang", "Spider fangs"));
-            Items.Add(new Item(ITEM_ID_SPIDER_SILK, "Spider silk", "Spider silks"));
-            Items.Add(new Item(ITEM_ID_ADVENTURER_PASS, "Adventurer pass", "Adventurer passes"));
+            Items.Add(new Item(ITEM_ID_RAT_TAIL, "Rat tail", "Rat tails", 1));
+            Items.Add(new Item(ITEM_ID_PIECE_OF_FUR, "Piece of fur", "Peices of fur", 1));
+            Items.Add(new Item(ITEM_ID_SNAKE_FANG, "Snake fang", "Snake fangs", 1));
+            Items.Add(new Item(ITEM_ID_SNAKESKIN, "Snakeskin", "Snakeskins", 2));
+            Items.Add(new Item(ITEM_ID_SPIDER_FANG, "Spider fang", "Spider fangs", 1));
+            Items.Add(new Item(ITEM_ID_SPIDER_SILK, "Spider silk", "Spider silks", 1));
 
-            Items.Add(new HealingPotion(ITEM_ID_HEALING_POTION, "Healing potion", "Healing potions", 5));
+            Items.Add(new Item(ITEM_ID_ADVENTURER_PASS, "Adventurer pass", "Adventurer passes", UNSELLABLE_ITEM_PRICE));
+
+            Items.Add(new HealingPotion(ITEM_ID_HEALING_POTION, "Healing potion", "Healing potions", 5, 3));
         }
 
         private static void PopulateMonsters()
@@ -109,6 +116,12 @@ namespace Engine
 
         private static void PopulateLocations()
         {
+            //figure out how to randomize vendors and vendor stock
+            //vendors
+            Vendor bobTheRatCatcher = new Vendor("Bob the Rat-Catcher");
+            bobTheRatCatcher.AddItemToInventory(ItemByID(ITEM_ID_PIECE_OF_FUR), 5);
+            bobTheRatCatcher.AddItemToInventory(ItemByID(ITEM_ID_RAT_TAIL), 3);
+
             //Creats each location
             Location home = new Location(LOCATION_ID_HOME, "Home:", "You wake up at your house hungover and confused. You are curious about this rusty sword in your hand. Everything is oddly quiet.");
 
@@ -136,10 +149,11 @@ namespace Engine
             // Link the locations together
             home.LocationToNorth = townSquare;
 
-            townSquare.LocationToNorth = alchemistHut;
-            townSquare.LocationToSouth = home;
-            townSquare.LocationToEast  = guardPost;
-            townSquare.LocationToWest  = farmhouse;
+            townSquare.LocationToNorth   = alchemistHut;
+            townSquare.LocationToSouth   = home;
+            townSquare.LocationToEast    = guardPost;
+            townSquare.LocationToWest    = farmhouse;
+            townSquare.VendorWorkingHere = bobTheRatCatcher; //vendor
 
             farmhouse.LocationToEast = townSquare;
             farmhouse.LocationToWest = farmersField;
@@ -154,8 +168,9 @@ namespace Engine
             guardPost.LocationToEast = bridge;
             guardPost.LocationToWest = townSquare;
 
-            bridge.LocationToWest = guardPost;
-            bridge.LocationToEast = spiderField;
+            bridge.LocationToWest    = guardPost;
+            bridge.LocationToEast    = spiderField;
+            bridge.VendorWorkingHere = bobTheRatCatcher; //vendor
 
             spiderField.LocationToWest = bridge;
 

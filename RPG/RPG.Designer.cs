@@ -50,6 +50,7 @@
             this.dgvInventory = new System.Windows.Forms.DataGridView();
             this.dgvQuests = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnTrade = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuests)).BeginInit();
             this.SuspendLayout();
@@ -289,6 +290,18 @@
             this.label6.TabIndex = 21;
             this.label6.Text = "RPG By Harley Roper";
             // 
+            // btnTrade
+            // 
+            this.btnTrade.BackColor = System.Drawing.Color.Goldenrod;
+            this.btnTrade.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTrade.Location = new System.Drawing.Point(322, 433);
+            this.btnTrade.Name = "btnTrade";
+            this.btnTrade.Size = new System.Drawing.Size(75, 23);
+            this.btnTrade.TabIndex = 21;
+            this.btnTrade.Text = "Trade";
+            this.btnTrade.UseVisualStyleBackColor = false;
+            this.btnTrade.Click += new System.EventHandler(this.btnTrade_Click);
+            // 
             // RPG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -307,6 +320,7 @@
             this.Controls.Add(this.btnNorth);
             this.Controls.Add(this.btnUsePotion);
             this.Controls.Add(this.btnUseWeapon);
+            this.Controls.Add(this.btnTrade);
             this.Controls.Add(this.cboPotions);
             this.Controls.Add(this.cboWeapons);
             this.Controls.Add(this.selectAction);
@@ -354,6 +368,7 @@
         private System.Windows.Forms.Button btnSouth;
         private System.Windows.Forms.Button btnWest;
         private System.Windows.Forms.Button btnEast;
+        private System.Windows.Forms.Button btnTrade;
         private System.Windows.Forms.RichTextBox rtbLocation;
         private System.Windows.Forms.RichTextBox rtbMessages;
         private System.Windows.Forms.DataGridView dgvInventory;

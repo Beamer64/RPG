@@ -150,6 +150,11 @@ namespace RPG
             _player.UsePotion(potion);
         }
 
+        private void btnTrade_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void PlayerOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
             if (propertyChangedEventArgs.PropertyName == "Weapons")
