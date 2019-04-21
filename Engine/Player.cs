@@ -54,6 +54,7 @@ namespace Engine
         public BindingList<InventoryItem> Inventory { get; set; }
         public BindingList<PlayerQuest> Quests { get; set; }
 
+
         public List<Weapon> Weapons
         {
             get { return Inventory.Where(x => x.Details is Weapon).Select(x => x.Details as Weapon).ToList(); }
