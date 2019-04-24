@@ -8,3 +8,6 @@
 
 //Clicking the "Use" button for weapons when finding a monster does nothing//		FIXED BUGS
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Can't buy from vendor in cmd window. vendor never has item being bought.

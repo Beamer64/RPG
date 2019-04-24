@@ -15,7 +15,7 @@ namespace RPG
 {
     public partial class RPG : Form
     {
-        private Player  _player;
+        private Player _player;
 
         //xml file the player data will save to
         private const string PLAYER_DATA_FILE_NAME = "PlayerData.xml";
@@ -24,14 +24,15 @@ namespace RPG
         {
             InitializeComponent();
 
-            if (File.Exists(PLAYER_DATA_FILE_NAME))
-            {
-                _player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
-            }
-            else
-            {
-                _player = Player.CreateDefaultPlayer();
-            }
+                if (File.Exists(PLAYER_DATA_FILE_NAME))
+                {
+                    _player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
+                }
+                else
+                {
+                    _player = Player.CreateDefaultPlayer();
+                }
+
 
             //updates UI labels to show current player stats
             lblHitPoints.DataBindings.Add("Text", _player, "CurrentHitPoints");
