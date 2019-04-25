@@ -85,7 +85,15 @@ namespace RPG_Console
 
         private static void ParseInput(string input)
         {
-            if (input.Contains("help") || input == "?")
+            //easter egg
+            if (input.Contains("weast"))
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Is mayonnaise an instrument?");
+                Console.ResetColor();
+            }
+            else if (input.Contains("help") || input == "?")
             {
                 Console.WriteLine("Available commands");
                 Console.WriteLine("====================================");
@@ -113,7 +121,7 @@ namespace RPG_Console
                 Console.WriteLine("Level: {0}", _player.Level);
                 Console.WriteLine("Gold: {0}", _player.Gold);
             }
-            else if (input == "look")
+            else if (input.Contains("look"))
             {
                 DisplayCurrentLocation();
             }

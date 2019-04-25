@@ -141,15 +141,6 @@ namespace Engine
             }
         }
 
-        public static Player CreatePlayerFromDatabase(int currentHitPoints, int maximumHitpoints, int gold, int experiencePoints, int currentLocationID)
-        {
-            Player player = new Player(currentHitPoints, maximumHitpoints, gold, experiencePoints);
-
-            player.MoveTo(World.LocationByID(currentLocationID));
-
-            return player;
-        }
-
         //Adds more HP on each level up
         public void AddExperiencePoints(int experiencePointsToAdd)
         {
