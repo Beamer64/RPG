@@ -109,6 +109,7 @@ namespace RPG_Console
                 Console.WriteLine("East - Move East");
                 Console.WriteLine("West - Move West");
                 Console.WriteLine("Exit - Save the game and exit");
+                SaveGameData();
             }
             else if (input == "stats")
             {
@@ -117,10 +118,12 @@ namespace RPG_Console
                 Console.WriteLine("Experience Points: {0}", _player.ExperiencePoints);
                 Console.WriteLine("Level: {0}", _player.Level);
                 Console.WriteLine("Gold: {0}", _player.Gold);
+                SaveGameData();
             }
             else if (input.Contains("look"))
             {
                 DisplayCurrentLocation();
+                SaveGameData();
             }
             else if (input.Contains("north"))
             {
@@ -132,6 +135,7 @@ namespace RPG_Console
                 {
                     _player.MoveNorth();
                 }
+                SaveGameData();
             }
             else if (input.Contains("east"))
             {
@@ -143,6 +147,7 @@ namespace RPG_Console
                 {
                     _player.MoveEast();
                 }
+                SaveGameData();
             }
             else if (input.Contains("south"))
             {
@@ -154,6 +159,7 @@ namespace RPG_Console
                 {
                     _player.MoveSouth();
                 }
+                SaveGameData();
             }
             else if (input.Contains("west"))
             {
@@ -165,6 +171,7 @@ namespace RPG_Console
                 {
                     _player.MoveWest();
                 }
+                SaveGameData();
             }
             else if (input == "inventory")
             {
@@ -172,6 +179,7 @@ namespace RPG_Console
                 {
                     Console.WriteLine("{0}: {1}", inventoryItem.Description, inventoryItem.Quantity);
                 }
+                SaveGameData();
             }
             else if (input == "quests")
             {
@@ -187,6 +195,7 @@ namespace RPG_Console
                             playerQuest.IsCompleted ? "Completed" : "Incomplete");
                     }
                 }
+                SaveGameData();
             }
             else if (input.Contains("attack"))
             {
@@ -212,6 +221,7 @@ namespace RPG_Console
                         _player.UseWeapon(_player.CurrentWeapon);
                     }
                 }
+                SaveGameData();
             }
             else if (input.StartsWith("equip "))
             {
@@ -238,6 +248,7 @@ namespace RPG_Console
                         Console.WriteLine("You equip your {0}", _player.CurrentWeapon.Name);
                     }
                 }
+                SaveGameData();
             }
             else if (input.StartsWith("drink "))
             {
@@ -262,6 +273,7 @@ namespace RPG_Console
                         _player.UsePotion(potionToDrink);
                     }
                 }
+                SaveGameData();
             }
             else if (input == "trade")
             {
@@ -305,6 +317,7 @@ namespace RPG_Console
                         }
                     }
                 }
+                SaveGameData();
             }
             else if (input.StartsWith("buy "))
             {
@@ -350,6 +363,7 @@ namespace RPG_Console
                         }
                     }
                 }
+                SaveGameData();
             }
             else if (input.StartsWith("sell "))
             {
@@ -388,11 +402,13 @@ namespace RPG_Console
                         }
                     }
                 }
+                SaveGameData();
             }
             else
             {
                 Console.WriteLine("I do not understand");
                 Console.WriteLine("Type 'Help' to see a list of available commands");
+                SaveGameData();
             }
 
             // Write a blank line, to keep the UI a little cleaner

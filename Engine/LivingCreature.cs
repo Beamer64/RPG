@@ -16,6 +16,12 @@ namespace Engine
         }
         public int MaximumHitPoints { get; set; }
 
+        //the thing is dead...duh
+        public bool IsDead
+        {
+            get { return CurrentHitPoints <= 0; }
+        }
+
         public LivingCreature(int currentHitPoints, int maximumHitPoints)
         {
             CurrentHitPoints = currentHitPoints;
@@ -26,10 +32,7 @@ namespace Engine
 
         protected void OnPropertyChanged(string name)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }
