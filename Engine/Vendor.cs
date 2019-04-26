@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Engine
 {
-        public class Vendor : INotifyPropertyChanged
+    public class Vendor : INotifyPropertyChanged
     {
         public string Name { get; set; }
         public BindingList<InventoryItem> Inventory { get; private set; }
