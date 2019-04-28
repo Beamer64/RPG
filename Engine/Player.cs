@@ -403,7 +403,7 @@ namespace Engine
 
             if (CurrentMonster != null)
             {
-                RaiseMessage("You see a " + location.MonsterLivingHere.Name);
+                RaiseMessage("You see a " + CurrentMonster.Name);
             }
         }
 
