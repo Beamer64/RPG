@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using Engine;
+using System.Drawing;
+using Console = Colorful.Console;
 
 namespace RPG_Console
 {
@@ -29,6 +31,9 @@ namespace RPG_Console
             // Infinite loop, until the user types "exit"
             while (true)
             {
+                Console.WindowWidth = 75;
+                Console.WindowHeight = 35;
+
                 // Display a prompt, so the user knows to type something
                 Console.Write(">");
 
@@ -81,13 +86,49 @@ namespace RPG_Console
         }
 
         private static void ParseInput(string input)
-        {
+        {   
             //easter egg
             if (input.Contains("weast"))
             {
+                //colors the word "mayonaise" white and leaves the rest pink
+                //thats totally all it does.
+                string mayo = "Is {0} an instrument?";
+                string[] Mayonnaise = new string[]
+                {
+                "mayonnaise",
+                };
+
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine("Is mayonnaise an instrument?");
+                Console.WriteLineFormatted(mayo, Color.White, Color.PaleVioletRed, Mayonnaise);
+                Console.WriteLine("");
+                Console.WriteLine("───────────────▄████████▄────────", Color.PaleVioletRed);
+                Console.WriteLine("──────────────██▒▒▒▒▒▒▒▒██───────", Color.PaleVioletRed);
+                Console.WriteLine("─────────────██▒▒▒▒▒▒▒▒▒██───────", Color.PaleVioletRed);
+                Console.WriteLine("────────────██▒▒▒▒▒▒▒▒▒▒██───────", Color.PaleVioletRed);
+                Console.WriteLine("───────────██▒▒▒▒▒▒▒▒▒██▀────────", Color.PaleVioletRed);
+                Console.WriteLine("──────────██▒▒▒▒▒▒▒▒▒▒██─────────", Color.PaleVioletRed);
+                Console.WriteLine("─────────██▒▒▒▒▒▒▒▒▒▒▒██─────────", Color.PaleVioletRed);
+                Console.WriteLine("────────██▒████▒████▒▒██─────────", Color.PaleVioletRed);
+                Console.WriteLine("────────██▒▒▒▒▒▒▒▒▒▒▒▒██─────────", Color.PaleVioletRed);
+                Console.WriteLine("────────██▒────▒▒────▒██─────────", Color.PaleVioletRed);
+                Console.WriteLine("────────██▒██──▒▒██──▒██─────────", Color.PaleVioletRed);
+                Console.WriteLine("────────██▒────▒▒────▒██─────────", Color.PaleVioletRed);
+                Console.WriteLine("────────██▒▒▒▒▒▒▒▒▒▒▒▒██─────────", Color.PaleVioletRed);
+                Console.WriteLine("───────██▒▒█▀▀▀▀▀▀▀█▒▒▒▒██───────", Color.PaleVioletRed);
+                Console.WriteLine("─────██▒▒▒▒▒█▄▄▄▄▄█▒▒▒▒▒▒▒██─────", Color.PaleVioletRed);
+                Console.WriteLine("───██▒▒██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒██───", Color.PaleVioletRed);
+                Console.WriteLine("─██▒▒▒▒██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▒▒██─", Color.PaleVioletRed);
+                Console.WriteLine("█▒▒▒▒██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▒▒█", Color.PaleVioletRed);
+                Console.WriteLine("█▒▒▒▒██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▒▒█", Color.PaleVioletRed);
+                Console.WriteLine("█▒▒████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒████▒▒█", Color.PaleVioletRed);
+                Console.WriteLine("▀████▒▒▒▒▒▒▒▒▒▓▓▓▓▒▒▒▒▒▒▒▒▒▒████▀", Color.PaleVioletRed);
+                Console.WriteLine("──█▌▌▌▌▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▌▌▌███──", Color.PaleGreen);
+                Console.WriteLine("───█▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌█────", Color.PaleGreen);
+                Console.WriteLine("───█▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌█────", Color.PaleGreen);
+                Console.WriteLine("────▀█▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌██▀─────", Color.PaleGreen);
+                Console.WriteLine("─────█▌▌▌▌▌▌████████▌▌▌▌▌██──────", Color.PaleGreen);
+                Console.WriteLine("──────██▒▒██────────██▒▒██───────", Color.PaleVioletRed);
+                Console.WriteLine("──────▀████▀────────▀████▀───────", Color.PaleVioletRed);
                 Console.ResetColor();
             }
             else if (input.Contains("help") || input == "?")
