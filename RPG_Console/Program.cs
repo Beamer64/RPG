@@ -21,7 +21,7 @@ namespace RPG_Console
 
             Console.WriteLine("Type 'Help' to see a list of commands");
             Console.WriteLine("");
-
+            
             DisplayCurrentLocation();
 
             // Connect player events to functions that will display in the UI

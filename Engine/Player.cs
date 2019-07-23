@@ -77,7 +77,7 @@ namespace Engine
             Inventory = new BindingList<InventoryItem>();
             Quests = new BindingList<PlayerQuest>();
         }
-
+        
         //creates a new default player
         public static Player CreateDefaultPlayer()
         {
@@ -143,21 +143,6 @@ namespace Engine
                 return Player.CreateDefaultPlayer();
             }
         }
-
-        /*public static Player CreateFromJsonFile()
-        {
-            try
-            {
-
-            }
-            catch
-            {
-
-            }
-        }*/
-        
-
-
         //checks for required items
         public bool HasRequiredItemToEnterThisLocation(Location location)
         {
