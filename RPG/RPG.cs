@@ -102,8 +102,6 @@ namespace RPG
                 rtbMessages.Text += Environment.NewLine;
             }
 
-            RtbMessages_TextChanged(rtbMessages.Text, messageEventArgs);
-
             
         }
 
@@ -192,17 +190,22 @@ namespace RPG
 
                 if (_player.CurrentLocation.HasAMonster)
                 {
-                    cboWeapons.Visible = false;
-                    cboPotions.Visible = false;
-                    btnUseWeapon.Visible = false;
-                    btnUsePotion.Visible = false;
-                }
-                else
-                {
+                    cboWeapons.Visible = true;
+                    cboPotions.Visible = true;
+                    btnUseWeapon.Visible = true;
+                    btnUsePotion.Visible = true;
+
                     cboWeapons.Visible = _player.Weapons.Any();
                     cboPotions.Visible = _player.Potions.Any();
                     btnUseWeapon.Visible = _player.Weapons.Any();
                     btnUsePotion.Visible = _player.Potions.Any();
+                }
+                else
+                {
+                    cboWeapons.Visible = false;
+                    cboPotions.Visible = false;
+                    btnUseWeapon.Visible = false;
+                    btnUsePotion.Visible = false;
                 }
             }
         }
