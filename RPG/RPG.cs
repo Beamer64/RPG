@@ -102,8 +102,9 @@ namespace RPG
                 rtbMessages.Text += Environment.NewLine;
             }
 
-            rtbMessages.SelectionStart = rtbMessages.Text.Length;
-            rtbMessages.ScrollToCaret();
+            RtbMessages_TextChanged(rtbMessages.Text, messageEventArgs);
+
+            
         }
 
         //on button click, moves the player:
