@@ -191,17 +191,22 @@ namespace RPG
 
                 if (_player.CurrentLocation.HasAMonster)
                 {
-                    cboWeapons.Visible = false;
-                    cboPotions.Visible = false;
-                    btnUseWeapon.Visible = false;
-                    btnUsePotion.Visible = false;
-                }
-                else
-                {
+                    cboWeapons.Visible = true;
+                    cboPotions.Visible = true;
+                    btnUseWeapon.Visible = true;
+                    btnUsePotion.Visible = true;
+
                     cboWeapons.Visible = _player.Weapons.Any();
                     cboPotions.Visible = _player.Potions.Any();
                     btnUseWeapon.Visible = _player.Weapons.Any();
                     btnUsePotion.Visible = _player.Potions.Any();
+                }
+                else
+                {
+                    cboWeapons.Visible = false;
+                    cboPotions.Visible = false;
+                    btnUseWeapon.Visible = false;
+                    btnUsePotion.Visible = false;
                 }
             }
         }
@@ -220,6 +225,13 @@ namespace RPG
         private void RPG_FormClosing(object sender, FormClosingEventArgs e)
         {
             File.WriteAllText(PLAYER_DATA_FILE_NAME, _player.ToXmlString());
+        }
+
+        private void RtbMessages_TextChanged(object sender, EventArgs e)
+        {
+            //Scrolls to the bottom of the message box
+            rtbMessages.SelectionStart = rtbMessages.Text.Length;
+            rtbMessages.ScrollToCaret();
         }
     }
 }
