@@ -13,6 +13,7 @@ namespace RPG_Console
         private const string PLAYER_DATA_FILE_NAME = "PlayerData.xml";
 
         private static Player _player;
+        private static Vendor _vendor;
 
         private static void Main(string[] args)
         {
@@ -98,7 +99,7 @@ namespace RPG_Console
 
                 Console.Clear();
                 Console.WriteLineFormatted(mayo, Color.White, Color.PaleVioletRed, Mayonnaise);
-                Console.WriteLine("");
+
                 Console.WriteLine("───────────────▄████████▄────────", Color.PaleVioletRed);
                 Console.WriteLine("──────────────██▒▒▒▒▒▒▒▒██───────", Color.PaleVioletRed);
                 Console.WriteLine("─────────────██▒▒▒▒▒▒▒▒▒██───────", Color.PaleVioletRed);
@@ -332,6 +333,7 @@ namespace RPG_Console
                         Console.WriteLine("{0} {1} Price: {2}", inventoryItem.Quantity, inventoryItem.Description,
                             inventoryItem.Price);
                     }
+                    Console.WriteLine("");
                 }
             }
             else
@@ -357,11 +359,8 @@ namespace RPG_Console
         {
             Console.WriteLine("");
 
-            if (LocationDoesNotHaveVendor())
+            if (_player.CurrentLocation.VendorWorkingHere != null)
             {
-
-
-
                 string itemName = input.Substring(4).Trim();
 
                 if (string.IsNullOrEmpty(itemName))
@@ -393,10 +392,17 @@ namespace RPG_Console
                             _player.AddItemToInventory(itemToBuy.Details);
                             _player.Gold -= itemToBuy.Price;
 
+                            _vendor.RemoveItemFromInventory(itemToBuy.Details, 1);
+
                             Console.WriteLine("You bought one {0} for {1} gold", itemToBuy.Details.Name, itemToBuy.Price);
                         }
                     }
                 }
+            }
+            else
+            {
+                Console.WriteLine("There is no vendor at this location");
+                Console.WriteLine("");
             }
         }
 
@@ -404,38 +410,41 @@ namespace RPG_Console
         {
             Console.WriteLine("");
 
-            if (LocationDoesNotHaveVendor())
+            if (_player.CurrentLocation.VendorWorkingHere != null)
             {
-                return;
-            }
+                string itemName = input.Substring(5).Trim();
 
-            string itemName = input.Substring(5).Trim();
-
-            if (string.IsNullOrEmpty(itemName))
-            {
-                Console.WriteLine("You must enter the name of the item to sell");
-            }
-            else
-            {
-                // Get the InventoryItem from the player's inventory
-                InventoryItem itemToSell =
-                    _player.Inventory.SingleOrDefault(x => x.Details.Name.ToLower() == itemName &&
-                                                           x.Quantity > 0 &&
-                                                           x.Price != World.UNSELLABLE_ITEM_PRICE);
-
-                // Check if the player has the item entered
-                if (itemToSell == null)
+                if (string.IsNullOrEmpty(itemName))
                 {
-                    Console.WriteLine("The player cannot sell any {0}", itemName);
+                    Console.WriteLine("You must enter the name of the item to sell");
                 }
                 else
                 {
-                    // Sell the item
-                    _player.RemoveItemFromInventory(itemToSell.Details);
-                    _player.Gold += itemToSell.Price;
+                    // Get the InventoryItem from the player's inventory
+                    InventoryItem itemToSell =
+                        _player.Inventory.SingleOrDefault(x => x.Details.Name.ToLower() == itemName &&
+                                                               x.Quantity > 0 &&
+                                                               x.Price != World.UNSELLABLE_ITEM_PRICE);
 
-                    Console.WriteLine("You receive {0} gold for your {1}", itemToSell.Price, itemToSell.Details.Name);
+                    // Check if the player has the item entered
+                    if (itemToSell == null)
+                    {
+                        Console.WriteLine("The player cannot sell any {0}", itemName);
+                    }
+                    else
+                    {
+                        // Sell the item
+                        _player.RemoveItemFromInventory(itemToSell.Details);
+                        _player.Gold += itemToSell.Price;
+
+                        Console.WriteLine("You receive {0} gold for your {1}", itemToSell.Price, itemToSell.Details.Name);
+                    }
                 }
+            }
+            else
+            {
+                Console.WriteLine("There is no vendor at this location");
+                Console.WriteLine("");
             }
         }
 

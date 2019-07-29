@@ -27,3 +27,5 @@
 //add monster percent totals 100%
   //i.e. locationPlace.AddMonster(MONSTER_ID_RAT, 70);
 	   //locationPlace.AddMonster(MONSTER_ID_SNAKE, 30);
+
+//move inventory quantity over on cmd trade screen
