@@ -244,6 +244,7 @@
             this.rtbMessages.Size = new System.Drawing.Size(394, 249);
             this.rtbMessages.TabIndex = 18;
             this.rtbMessages.Text = "";
+            this.rtbMessages.TextChanged += new System.EventHandler(this.RtbMessages_TextChanged);
             // 
             // dgvInventory
             // 

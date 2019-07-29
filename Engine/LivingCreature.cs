@@ -16,11 +16,8 @@ namespace Engine
         }
         public int MaximumHitPoints { get; set; }
 
-        //the thing is dead...duh
-        public bool IsDead
-        {
-            get { return CurrentHitPoints <= 0; }
-        }
+        //the thing is dead
+        public bool IsDead { get { return CurrentHitPoints <= 0; } }
 
         public LivingCreature(int currentHitPoints, int maximumHitPoints)
         {

@@ -16,6 +16,12 @@ namespace Engine
 
         public event EventHandler<MessageEventArgs> OnMessage;
 
+        public Weapon CurrentWeapon { get; set; }
+        private Monster CurrentMonster { get; set; }
+
+        public BindingList<InventoryItem> Inventory { get; set; }
+        public BindingList<PlayerQuest> Quests { get; set; }
+
         public int Gold
         {
             get { return _gold; }
@@ -50,12 +56,6 @@ namespace Engine
                 OnPropertyChanged("CurrentLocation");
             }
         }
-        public Weapon CurrentWeapon { get; set; }
-
-        public BindingList<InventoryItem> Inventory { get; set; }
-        public BindingList<PlayerQuest> Quests { get; set; }
-
-        private Monster CurrentMonster { get; set; }
 
         public List<Weapon> Weapons
         {
@@ -209,17 +209,15 @@ namespace Engine
         //adds items to inventory
         public void AddItemToInventory(Item itemToAdd, int quantity = 1)
         {
-            InventoryItem item = Inventory.SingleOrDefault(ii => ii.Details.ID == itemToAdd.ID);
+            InventoryItem existingItemInInventory = Inventory.SingleOrDefault(ii => ii.Details.ID == itemToAdd.ID);
 
-            if (item == null)
+            if (existingItemInInventory == null)
             {
-                // They didn't have the item, so add it to their inventory
                 Inventory.Add(new InventoryItem(itemToAdd, quantity));
             }
             else
             {
-                // They have the item in their inventory, so increase the quantity
-                item.Quantity += quantity;
+                existingItemInInventory.Quantity += quantity;
             }
 
             RaiseInventoryChangedEvent(itemToAdd);
@@ -228,32 +226,17 @@ namespace Engine
         //removes items from inventory
         public void RemoveItemFromInventory(Item itemToRemove, int quantity = 1)
         {
-            InventoryItem item = Inventory.SingleOrDefault(ii => ii.Details.ID == itemToRemove.ID);
+            InventoryItem item = Inventory.SingleOrDefault(ii => ii.Details.ID == itemToRemove.ID && ii.Quantity >= quantity);
 
-            if (item == null)
+            if (item != null)
             {
-                // The item is not in the player's inventory, so ignore it.
-                // We might want to raise an error for this situation
-            }
-            else
-            {
-                // They have the item in their inventory, so decrease the quantity
                 item.Quantity -= quantity;
 
-                // Don't allow negative quantities.
-                // We might want to raise an error for this situation
-                if (item.Quantity < 0)
-                {
-                    item.Quantity = 0;
-                }
-
-                // If the quantity is zero, remove the item from the list
                 if (item.Quantity == 0)
                 {
                     Inventory.Remove(item);
                 }
 
-                // Notify the UI that the inventory has changed
                 RaiseInventoryChangedEvent(itemToRemove);
             }
         }
@@ -302,6 +285,48 @@ namespace Engine
                 }
             }
             SetTheCurrentMonsterForTheCurrentLocation(location);
+        }
+
+        //takes player home on death
+        private void MoveHome()
+        {
+            MoveTo(World.LocationByID(World.LOCATION_ID_HOME));
+        }
+
+        //moves the player north
+        public void MoveNorth()
+        {
+            if (CurrentLocation.LocationToNorth != null)
+            {
+                MoveTo(CurrentLocation.LocationToNorth);
+            }
+        }
+
+        //moves the player south
+        public void MoveSouth()
+        {
+            if (CurrentLocation.LocationToSouth != null)
+            {
+                MoveTo(CurrentLocation.LocationToSouth);
+            }
+        }
+
+        //moves the player east
+        public void MoveEast()
+        {
+            if (CurrentLocation.LocationToEast != null)
+            {
+                MoveTo(CurrentLocation.LocationToEast);
+            }
+        }
+
+        //moves the player west
+        public void MoveWest()
+        {
+            if (CurrentLocation.LocationToWest != null)
+            {
+                MoveTo(CurrentLocation.LocationToWest);
+            }
         }
 
         //handles weapons
@@ -481,48 +506,6 @@ namespace Engine
             }
         }
 
-        //takes player home on death
-        private void MoveHome()
-        {
-            MoveTo(World.LocationByID(World.LOCATION_ID_HOME));
-        }
-
-        //moves the player north
-        public void MoveNorth()
-        {
-            if (CurrentLocation.LocationToNorth != null)
-            {
-                MoveTo(CurrentLocation.LocationToNorth);
-            }
-        }
-
-        //moves the player south
-        public void MoveSouth()
-        {
-            if (CurrentLocation.LocationToSouth != null)
-            {
-                MoveTo(CurrentLocation.LocationToSouth);
-            }
-        }
-
-        //moves the player east
-        public void MoveEast()
-        {
-            if (CurrentLocation.LocationToEast != null)
-            {
-                MoveTo(CurrentLocation.LocationToEast);
-            }
-        }
-
-        //moves the player west
-        public void MoveWest()
-        {
-            if (CurrentLocation.LocationToWest != null)
-            {
-                MoveTo(CurrentLocation.LocationToWest);
-            }
-        }
-
         //tells UI about changes
         private void RaiseInventoryChangedEvent(Item item)
         {
@@ -540,10 +523,7 @@ namespace Engine
         //makes messages happen
         private void RaiseMessage(string message, bool addExtraNewLine = false)
         {
-            if (OnMessage != null)
-            {
-                OnMessage(this, new MessageEventArgs(message, addExtraNewLine));
-            }
+            OnMessage?.Invoke(this, new MessageEventArgs(message, addExtraNewLine));
         }
 
         //saves player data to xml file

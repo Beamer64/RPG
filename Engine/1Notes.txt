@@ -6,8 +6,18 @@
 
 //Text for location discription and name are overwriting eaach other//
 
+//items wont remove from inventory when bought/sold to trader//
+
+//Can't buy from vendor in cmd window. vendor never has item being bought.//
+
 //Clicking the "Use" button for weapons when finding a monster does nothing//		FIXED BUGS
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Can't buy from vendor in cmd window. vendor never has item being bought.
+remove item from vendor after purchase in GUI/CMD.
+
+buy/sell more than one of one item to vender in GUI/CMD.
+
+Weapons and attacks not showing with monster.
+
+
