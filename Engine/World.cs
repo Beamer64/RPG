@@ -117,15 +117,10 @@ namespace Engine
 
         private static void PopulateLocations()
         {
-            //figure out how to randomize vendors and vendor stock
             //vendors
             Vendor bobTheRatCatcher = new Vendor("Bob the Rat-Catcher");
             bobTheRatCatcher.AddItemToInventory(ItemByID(ITEM_ID_PIECE_OF_FUR), 5);
             bobTheRatCatcher.AddItemToInventory(ItemByID(ITEM_ID_RAT_TAIL), 3);
-
-            //add monster percent totals 100%
-            //i.e. locationPlace.AddMonster(MONSTER_ID_RAT, 70);
-                 //locationPlace.AddMonster(MONSTER_ID_SNAKE, 30);
 
             //Creats each location
             Location home = new Location(LOCATION_ID_HOME, "Home:", "You wake up at your house hungover and confused. You are curious about this rusty sword in your hand. Everything is oddly quiet.");
