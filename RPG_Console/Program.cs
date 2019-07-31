@@ -5,6 +5,7 @@ using System.Linq;
 using Engine;
 using System.Drawing;
 using Console = Colorful.Console;
+using Colorful;
 
 namespace RPG_Console
 {
@@ -14,6 +15,8 @@ namespace RPG_Console
 
         private static Player _player;
         private static Vendor _vendor;
+
+        private static Formatter Gold = new Formatter("gold", Color.Gold);
 
         private static void Main(string[] args)
         {
@@ -245,13 +248,17 @@ namespace RPG_Console
             else if (input.StartsWith("buy "))
             {
                 BuyItem(input);
-                
+
+                //brings trade info back up
                 ShowTradeInventories();
             }
 
             else if (input.StartsWith("sell "))
             {
                 SellItem(input);
+
+                //brings trade info back up
+                ShowTradeInventories();
             }
 
             else
@@ -313,7 +320,7 @@ namespace RPG_Console
                     foreach (
                         InventoryItem inventoryItem in _player.Inventory.Where(x => x.Price != World.UNSELLABLE_ITEM_PRICE))
                     {
-                        Console.WriteLine("{0} {1} Price: {2}", inventoryItem.Quantity, inventoryItem.Description,
+                        Console.WriteLine("{1} : {0} : Price : {2}", inventoryItem.Quantity, inventoryItem.Description,
                             inventoryItem.Price);
                     }
                 }
@@ -330,7 +337,7 @@ namespace RPG_Console
                 {
                     foreach (InventoryItem inventoryItem in _player.CurrentLocation.VendorWorkingHere.Inventory)
                     {
-                        Console.WriteLine("{0} {1} Price: {2}", inventoryItem.Quantity, inventoryItem.Description,
+                        Console.WriteLine("{1} : {0} : Price : {2}", inventoryItem.Quantity, inventoryItem.Description,
                             inventoryItem.Price);
                     }
                     Console.WriteLine("");
@@ -366,6 +373,7 @@ namespace RPG_Console
                 if (string.IsNullOrEmpty(itemName))
                 {
                     Console.WriteLine("You must enter the name of the item to buy");
+                    Console.WriteLine("");
                 }
                 else
                 {
@@ -378,13 +386,17 @@ namespace RPG_Console
                     if (itemToBuy == null)
                     {
                         Console.WriteLine("The vendor does not have any {0}", itemName);
+                        Console.WriteLine("");
                     }
                     else
                     {
                         // Check if the player has enough gold to buy the item
                         if (_player.Gold < itemToBuy.Price)
                         {
-                            Console.WriteLine("You do not have enough gold to buy a {0}", itemToBuy.Description);
+                            Console.Write("You do not have enough ");
+                            Console.Write("gold", Color.Gold);
+                            Console.Write(" to buy any {0}", itemToBuy.Description);
+                            Console.WriteLine("");
                         }
                         else
                         {
@@ -392,9 +404,11 @@ namespace RPG_Console
                             _player.AddItemToInventory(itemToBuy.Details);
                             _player.Gold -= itemToBuy.Price;
 
-                            _vendor.RemoveItemFromInventory(itemToBuy.Details, 1);
+                            //_vendor.RemoveItemFromInventory(itemToBuy.Details, 1);
 
-                            Console.WriteLine("You bought one {0} for {1} gold", itemToBuy.Details.Name, itemToBuy.Price);
+                            Console.Write("You bought one {0} for {1} ", itemToBuy.Details.Name, itemToBuy.Price);
+                            Console.Write("gold", Color.Gold);
+                            Console.WriteLine("");
                         }
                     }
                 }
@@ -417,6 +431,7 @@ namespace RPG_Console
                 if (string.IsNullOrEmpty(itemName))
                 {
                     Console.WriteLine("You must enter the name of the item to sell");
+                    Console.WriteLine("");
                 }
                 else
                 {
@@ -430,6 +445,7 @@ namespace RPG_Console
                     if (itemToSell == null)
                     {
                         Console.WriteLine("The player cannot sell any {0}", itemName);
+                        Console.WriteLine("");
                     }
                     else
                     {
@@ -437,7 +453,10 @@ namespace RPG_Console
                         _player.RemoveItemFromInventory(itemToSell.Details);
                         _player.Gold += itemToSell.Price;
 
-                        Console.WriteLine("You receive {0} gold for your {1}", itemToSell.Price, itemToSell.Details.Name);
+                        Console.Write("You receive {0} ", itemToSell.Price);
+                        Console.Write("gold", Color.Gold);
+                        Console.Write(" for your {0}", itemToSell.Details.Name);
+                        Console.WriteLine("");
                     }
                 }
             }

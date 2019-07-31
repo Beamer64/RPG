@@ -29,3 +29,5 @@
 	   //locationPlace.AddMonster(MONSTER_ID_SNAKE, 30);
 
 //move inventory quantity over on cmd trade screen
+
+//"there is no vendor at this location" X2 when trying to sell to no vendor
