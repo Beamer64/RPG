@@ -1,22 +1,20 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using Engine;
 using System.Drawing;
 using Console = Colorful.Console;
-using Colorful;
+using System.Diagnostics;
 
 namespace RPG_Console
 {
     public class Program
     {
-        private const string PLAYER_DATA_FILE_NAME = "PlayerData.xml";
+        public const string PLAYER_DATA_FILE_NAME = "PlayerData.xml";
 
         private static Player _player;
-        private static Vendor _vendor;
 
-        private static Formatter Gold = new Formatter("gold", Color.Gold);
+        public static bool running = true;
 
         private static void Main(string[] args)
         {
@@ -32,7 +30,7 @@ namespace RPG_Console
             _player.OnMessage += Player_OnMessage;
 
             // Infinite loop, until the user types "exit"
-            while (true)
+            while (running == true)
             {
                 SaveGameData();
 
@@ -137,6 +135,13 @@ namespace RPG_Console
             else if (input.Contains("help") || input == "?")
             {
                 DisplayHelpText();
+            }
+
+            else if (input.Contains("menu"))
+            {
+                SaveGameData();
+                running = false;
+                Process.Start("Intro_Screen.exe");
             }
 
             else if (input == "stats")
@@ -287,6 +292,7 @@ namespace RPG_Console
             Console.WriteLine("South - Move South");
             Console.WriteLine("East - Move East");
             Console.WriteLine("West - Move West");
+            Console.WriteLine("Menu - Save and return to main menu");
             Console.WriteLine("Exit - Save the game and exit");
         }
 

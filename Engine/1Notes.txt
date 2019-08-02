@@ -10,15 +10,15 @@
 
 //Can't buy from vendor in cmd window. vendor never has item being bought.//
 
-//Clicking the "Use" button for weapons when finding a monster does nothing//		FIXED BUGS
+//Weapons and attacks not showing with monster.
+
+//Clicking the "Use" button for weapons when finding a monster does nothing//	FIXED BUGS
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //remove item from vendor after purchase in GUI/CMD.
 
 //buy/sell more than one of one item to vender in GUI/CMD.
-
-//Weapons and attacks not showing with monster.
 
 //Color cmd text for items, gold etc...
 
@@ -31,3 +31,7 @@
 //move inventory quantity over on cmd trade screen
 
 //"there is no vendor at this location" X2 when trying to sell to no vendor
+
+//monsters should drop health potions
+
+//remove adventurer pass from the trade list

@@ -1,6 +1,7 @@
 ﻿using Engine;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -12,21 +13,20 @@ namespace RPG
         private Player _player;
 
         //xml file the player data will save to
-        private const string PLAYER_DATA_FILE_NAME = "PlayerData.xml";
+        public const string PLAYER_DATA_FILE_NAME = "PlayerData.xml";
 
         public RPG()
         {
             InitializeComponent();
 
-                if (File.Exists(PLAYER_DATA_FILE_NAME))
-                {
-                    _player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
-                }
-                else
-                {
-                    _player = Player.CreateDefaultPlayer();
-                }
-
+            if (File.Exists(PLAYER_DATA_FILE_NAME))
+            {
+                _player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
+            }
+            else
+            {
+                _player = Player.CreateDefaultPlayer();
+            }
 
             //updates UI labels to show current player stats
             lblHitPoints.DataBindings.Add("Text", _player, "CurrentHitPoints");
@@ -52,6 +52,8 @@ namespace RPG
                 HeaderText = "Quantity",
                 DataPropertyName = "Quantity"
             });
+
+            dgvInventory.ScrollBars = ScrollBars.Vertical;
 
             //adds quest table to UI
             dgvQuests.RowHeadersVisible = false;
@@ -101,15 +103,12 @@ namespace RPG
             {
                 rtbMessages.Text += Environment.NewLine;
             }
-
-            
         }
 
         //on button click, moves the player:
         //North
         private void btnNorth_Click(object sender, EventArgs e)
         {
-
             _player.MoveNorth();
         }
         //South
@@ -155,7 +154,15 @@ namespace RPG
         {
             if (propertyChangedEventArgs.PropertyName == "Weapons")
             {
+                Weapon previouslySelectedWeapon = _player.CurrentWeapon;
+
                 cboWeapons.DataSource = _player.Weapons;
+
+                if (previouslySelectedWeapon != null &&
+                    _player.Weapons.Exists(w => w.ID == previouslySelectedWeapon.ID))
+                {
+                    cboWeapons.SelectedItem = previouslySelectedWeapon;
+                }
 
                 if (!_player.Weapons.Any())
                 {
@@ -182,25 +189,26 @@ namespace RPG
                 btnEast.Visible  = (_player.CurrentLocation.LocationToEast    != null);
                 btnSouth.Visible = (_player.CurrentLocation.LocationToSouth   != null);
                 btnWest.Visible  = (_player.CurrentLocation.LocationToWest    != null);
+
                 btnTrade.Visible = (_player.CurrentLocation.VendorWorkingHere != null);
 
                 // Display current location name and description
                 rtbLocation.Text = _player.CurrentLocation.Name + Environment.NewLine;
                 rtbLocation.Text += _player.CurrentLocation.Description + Environment.NewLine;
 
-                if (_player.CurrentLocation.HasAMonster)
-                {
-                    cboWeapons.Visible = _player.Weapons.Any();
-                    cboPotions.Visible = _player.Potions.Any();
-                    btnUseWeapon.Visible = _player.Weapons.Any();
-                    btnUsePotion.Visible = _player.Potions.Any();
-                }
-                else
+                if (!_player.CurrentLocation.HasAMonster)
                 {
                     cboWeapons.Visible = false;
                     cboPotions.Visible = false;
                     btnUseWeapon.Visible = false;
                     btnUsePotion.Visible = false;
+                }
+                else
+                {
+                    cboWeapons.Visible = _player.Weapons.Any();
+                    cboPotions.Visible = _player.Potions.Any();
+                    btnUseWeapon.Visible = _player.Weapons.Any();
+                    btnUsePotion.Visible = _player.Potions.Any();
                 }
             }
         }
@@ -219,6 +227,12 @@ namespace RPG
         {
             rtbMessages.SelectionStart = rtbMessages.Text.Length;
             rtbMessages.ScrollToCaret();
+        }
+
+        private void BtnMainMenu_Click(object sender, EventArgs e)
+        {
+            Close();
+            Process.Start("Intro_Screen.exe");
         }
     }
 }

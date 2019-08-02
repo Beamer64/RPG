@@ -121,11 +121,12 @@ namespace Engine
             Vendor bobTheRatCatcher = new Vendor("Bob the Rat-Catcher");
             bobTheRatCatcher.AddItemToInventory(ItemByID(ITEM_ID_PIECE_OF_FUR), 5);
             bobTheRatCatcher.AddItemToInventory(ItemByID(ITEM_ID_RAT_TAIL), 3);
+            bobTheRatCatcher.AddItemToInventory(ItemByID(ITEM_ID_HEALING_POTION), 1);
 
             //Creats each location
             Location home = new Location(LOCATION_ID_HOME, "Home:", "You wake up at your house hungover and confused. You are curious about this rusty sword in your hand. Everything is oddly quiet.");
 
-            Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square:", "I wonder where everyone is..");
+            Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square:", "I wonder where everyone is.. You see a vendor: Bob the Rat Catcher.");
 
             Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's hut:", "There are many strange plants on the shelves.");
             alchemistHut.QuestAvailableHere = QuestByID(QUEST_ID_CLEAR_ALCHEMIST_GARDEN);
