@@ -5,6 +5,7 @@ using Engine;
 using System.Drawing;
 using Console = Colorful.Console;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace RPG_Console
 {
@@ -206,7 +207,7 @@ namespace RPG_Console
                 }
             }
 
-            else if (input == "inventory")
+            else if (input.Contains("inventory"))
             {
                 foreach (InventoryItem inventoryItem in _player.Inventory)
                 {
@@ -214,7 +215,7 @@ namespace RPG_Console
                 }
             }
 
-            else if (input == "quests")
+            else if (input.Contains("quests"))
             {
                 if (_player.Quests.Count == 0)
                 {
@@ -245,7 +246,7 @@ namespace RPG_Console
                 DrinkPotion(input);
             }
 
-            else if (input == "trade")
+            else if (input.Contains("trade"))
             {
                 ShowTradeInventories();
             }
