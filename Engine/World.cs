@@ -74,16 +74,19 @@ namespace Engine
         private static void PopulateMonsters()
         {
             Monster rat = new Monster(MONSTER_ID_RAT, "Rat", 5, 3, 10, 3, 3);
-            rat.LootTable.Add(new LootItem(ItemByID(ITEM_ID_RAT_TAIL), 75, false));
-            rat.LootTable.Add(new LootItem(ItemByID(ITEM_ID_PIECE_OF_FUR), 75, true));
+            rat.LootTable.Add(new LootItem(ItemByID(ITEM_ID_RAT_TAIL), 50, false));
+            rat.LootTable.Add(new LootItem(ItemByID(ITEM_ID_PIECE_OF_FUR), 50, true));
+            rat.LootTable.Add(new LootItem(ItemByID(ITEM_ID_HEALING_POTION), 20, false));
 
             Monster snake = new Monster(MONSTER_ID_SNAKE, "Snake", 5, 3, 10, 3, 3);
-            snake.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SNAKE_FANG), 75, false));
-            snake.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SNAKESKIN), 75, true));
+            snake.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SNAKE_FANG), 50, false));
+            snake.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SNAKESKIN), 50, true));
+            snake.LootTable.Add(new LootItem(ItemByID(ITEM_ID_HEALING_POTION), 20, false));
 
             Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "Giant spider", 20, 5, 40, 10, 10);
             giantSpider.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SPIDER_FANG), 75, true));
             giantSpider.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SPIDER_SILK), 25, false));
+            giantSpider.LootTable.Add(new LootItem(ItemByID(ITEM_ID_HEALING_POTION), 20, false));
 
             _monsters.Add(rat);
             _monsters.Add(snake);
@@ -126,7 +129,7 @@ namespace Engine
             //Creats each location
             Location home = new Location(LOCATION_ID_HOME, "Home:", "You wake up at your house hungover and confused. You are curious about this rusty sword in your hand. Everything is oddly quiet.");
 
-            Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square:", "I wonder where everyone is.. You see a vendor: Bob the Rat Catcher.");
+            Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square:", "I wonder where everyone is..");
 
             Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's hut:", "There are many strange plants on the shelves.");
 
@@ -149,8 +152,12 @@ namespace Engine
 
 
             //Adds Monsters (NAME, % chance of appearing)
-            alchemistsGarden.AddMonster(MONSTER_ID_RAT, 75);
+            alchemistsGarden.AddMonster(MONSTER_ID_RAT, 34);
+            alchemistsGarden.AddMonster(MONSTER_ID_SNAKE, 33);
+            alchemistsGarden.AddMonster(MONSTER_ID_GIANT_SPIDER, 33);
+
             farmersField.AddMonster(MONSTER_ID_SNAKE, 75);
+
             spiderField.AddMonster(MONSTER_ID_GIANT_SPIDER, 75);
 
             // Link the locations together

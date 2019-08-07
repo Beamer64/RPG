@@ -20,13 +20,17 @@
 
 //"there is nothing here to attack" after seeing a monster//
 
+//move inventory quantity over on cmd trade screen//
+
+//Randomize monster chance of appearing.//
+
 //Clicking the "Use" button for weapons when finding a monster does nothing//	FIXED BUGS
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //update vendor inventory after transactions
 
-//remove item from vendor after purchase in GUI/CMD.
+//remove item from vendor after purchase in GUI.
 
 //Color cmd text for items, gold etc...
 
@@ -36,9 +40,9 @@
   //i.e. locationPlace.AddMonster(MONSTER_ID_RAT, 70);
 	   //locationPlace.AddMonster(MONSTER_ID_SNAKE, 30);
 
-//move inventory quantity over on cmd trade screen
+//Add gold to trade menue in CMD//
 
-Randomize monster chance of appearing.
+
 
 //monsters should drop health potions
 

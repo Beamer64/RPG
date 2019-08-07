@@ -56,7 +56,7 @@ namespace Engine
                 int totalPercentages = _monstersAtLocation.Values.Sum();
 
                 // Select a random number between 1 and the total (in case the total of percentages is not 100).
-                int randomNumber = RandomNumberGenerator.NumberBetween(1, totalPercentages);
+                int randomNumber = RandomNumberGenerator.NumberBetween(0, totalPercentages);
 
                 // Loop through the monster list, 
                 // adding the monster's percentage chance of appearing to the runningTotal variable.

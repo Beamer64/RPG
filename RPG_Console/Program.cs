@@ -67,12 +67,6 @@ namespace RPG_Console
             if (e.PropertyName == "CurrentLocation")
             {
                 DisplayCurrentLocation();
-
-                if (_player.CurrentLocation.VendorWorkingHere != null)
-                {
-                    Console.WriteLine("You see a vendor here: {0}", _player.CurrentLocation.VendorWorkingHere.Name);
-                    Console.WriteLine("");
-                }
             }
         }
 
@@ -367,6 +361,12 @@ namespace RPG_Console
                 Console.WriteLine(_player.CurrentLocation.Description);
             }
             Console.WriteLine("");
+
+            if (_player.CurrentLocation.VendorWorkingHere != null)
+            {
+                Console.WriteLine("You see a vendor here: {0}", _player.CurrentLocation.VendorWorkingHere.Name);
+                Console.WriteLine("");
+            }
         }
 
         private static void BuyItem(string input)
@@ -506,7 +506,7 @@ namespace RPG_Console
                             }
                             if (inventoryItem == null)
                             {
-                                _player.CurrentLocation.VendorWorkingHere.Inventory.Add(itemToSell.Details);
+                                _player.CurrentLocation.VendorWorkingHere.Inventory.Add(itemToSell);
                             }
                         }
 
