@@ -348,7 +348,6 @@ namespace Engine
         }
 
         ///////////////////////Handles Quests////////////////////////////
-
         private void GiveQuestToPlayer(Quest quest)
         {
             RaiseMessage("You receive the " + quest.Name + " quest.");

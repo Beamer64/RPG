@@ -129,23 +129,29 @@ namespace Engine
             Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square:", "I wonder where everyone is.. You see a vendor: Bob the Rat Catcher.");
 
             Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's hut:", "There are many strange plants on the shelves.");
-            alchemistHut.QuestAvailableHere = QuestByID(QUEST_ID_CLEAR_ALCHEMIST_GARDEN);
 
             Location alchemistsGarden = new Location(LOCATION_ID_ALCHEMISTS_GARDEN, "Alchemist's garden:", "Many plants are growing here.");
-            alchemistsGarden.AddMonster(MONSTER_ID_RAT, 100);
 
             Location farmhouse = new Location(LOCATION_ID_FARMHOUSE, "Farmhouse:", "There is a small farmhouse, with a farmer in front.");
-            farmhouse.QuestAvailableHere = QuestByID(QUEST_ID_CLEAR_FARMERS_FIELD);
 
             Location farmersField = new Location(LOCATION_ID_FARM_FIELD, "Farmer's field:", "You see rows of vegetables growing here.");
-            farmersField.AddMonster(MONSTER_ID_SNAKE, 100);
 
             Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post:", "There is a large, tough-looking guard here.", ItemByID(ITEM_ID_ADVENTURER_PASS));
 
             Location bridge = new Location(LOCATION_ID_BRIDGE, "Bridge:", "A stone bridge crosses a wide river.");
 
             Location spiderField = new Location(LOCATION_ID_SPIDER_FIELD, "Forest:", "You see spider webs covering covering the trees in this forest.");
-            spiderField.AddMonster(MONSTER_ID_GIANT_SPIDER, 100);
+
+
+            //Adds Quests to loactaions
+            alchemistHut.QuestAvailableHere = QuestByID(QUEST_ID_CLEAR_ALCHEMIST_GARDEN);
+            farmhouse.QuestAvailableHere = QuestByID(QUEST_ID_CLEAR_FARMERS_FIELD);
+
+
+            //Adds Monsters (NAME, % chance of appearing)
+            alchemistsGarden.AddMonster(MONSTER_ID_RAT, 75);
+            farmersField.AddMonster(MONSTER_ID_SNAKE, 75);
+            spiderField.AddMonster(MONSTER_ID_GIANT_SPIDER, 75);
 
             // Link the locations together
             home.LocationToNorth = townSquare;

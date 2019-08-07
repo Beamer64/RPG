@@ -6,7 +6,7 @@ namespace Engine
     public class Vendor : INotifyPropertyChanged
     {
         public string Name { get; set; }
-        public BindingList<InventoryItem> Inventory { get; private set; }
+        public BindingList<InventoryItem> Inventory { get; set; }
 
         public Vendor(string name)
         {
@@ -31,7 +31,7 @@ namespace Engine
             OnPropertyChanged("Inventory");
         }
 
-        public void RemoveItemFromInventory(Item itemToRemove, int quantity = 1)
+        /*public void RemoveItemFromInventory(Item itemToRemove, int quantity = 1)
         {
             InventoryItem item = Inventory.SingleOrDefault(ii => ii.Details.ID == itemToRemove.ID);
 
@@ -57,7 +57,7 @@ namespace Engine
                 }
                 OnPropertyChanged("Inventory");
             }
-        }
+        }*/
 
         public event PropertyChangedEventHandler PropertyChanged;
 

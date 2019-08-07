@@ -5,7 +5,7 @@ using Engine;
 using System.Drawing;
 using Console = Colorful.Console;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
+using System;
 
 namespace RPG_Console
 {
@@ -390,7 +390,7 @@ namespace RPG_Console
                             x => x.Details.Name.ToLower() == itemName);
 
                     // Check if the vendor has the item
-                    if (itemToBuy == null)
+                    if (itemToBuy == null | itemToBuy.Quantity <= 0)
                     {
                         Console.WriteLine("The vendor does not have any {0}", itemName);
                         Console.WriteLine("");
@@ -407,15 +407,41 @@ namespace RPG_Console
                         }
                         else
                         {
-                            // Success! Buy the item
-                            _player.AddItemToInventory(itemToBuy.Details);
-                            _player.Gold -= itemToBuy.Price;
+                            Console.WriteLine("How many would you like to buy?");
+                            int buyQuantity = Convert.ToInt32(Console.ReadLine());
 
-                            //_vendor.RemoveItemFromInventory(itemToBuy.Details, 1);
+                            int buyQuantityPrice = itemToBuy.Price * buyQuantity;
 
-                            Console.Write("You bought one {0} for {1} ", itemToBuy.Details.Name, itemToBuy.Price);
-                            Console.Write("gold", Color.Gold);
                             Console.WriteLine("");
+
+                            if(buyQuantity > itemToBuy.Quantity)
+                            {
+                                Console.WriteLine("The vendor does not have that many to sell.");
+                                Console.WriteLine("");
+                            }
+                            else
+                            {
+                                // Success! Buy the item
+                                _player.AddItemToInventory(itemToBuy.Details, buyQuantity);
+                                _player.Gold -= buyQuantityPrice;
+
+                                foreach (InventoryItem inventoryItem in _player.CurrentLocation.VendorWorkingHere.Inventory)
+                                {
+                                    if (inventoryItem.Details == itemToBuy.Details)
+                                    {
+                                        inventoryItem.Quantity -= buyQuantity;
+
+                                        if (inventoryItem.Quantity <= 0)
+                                        {
+                                            inventoryItem.Quantity = 0;
+                                        }
+                                    }
+                                }
+
+                                Console.Write("You bought {0} {1} for {2} ", buyQuantity, itemToBuy.Details.Name, buyQuantityPrice);
+                                Console.Write("gold", Color.Gold);
+                                Console.WriteLine("");
+                            }
                         }
                     }
                 }
@@ -449,20 +475,44 @@ namespace RPG_Console
                                                                x.Price != World.UNSELLABLE_ITEM_PRICE);
 
                     // Check if the player has the item entered
-                    if (itemToSell == null)
+                    if (itemToSell == null | itemToSell.Quantity <= 0)
                     {
                         Console.WriteLine("The player cannot sell any {0}", itemName);
                         Console.WriteLine("");
                     }
                     else
                     {
-                        // Sell the item
-                        _player.RemoveItemFromInventory(itemToSell.Details);
-                        _player.Gold += itemToSell.Price;
+                        Console.WriteLine("How many would you like to sell?");
+                        int sellQuantity = Convert.ToInt32(Console.ReadLine());
 
-                        Console.Write("You receive {0} ", itemToSell.Price);
+                        int sellQuantityPrice = itemToSell.Price * sellQuantity;
+                        Console.WriteLine("");
+
+
+                        // Sell the item
+                        _player.RemoveItemFromInventory(itemToSell.Details, sellQuantity);
+                        _player.Gold += sellQuantityPrice;
+
+                        foreach (InventoryItem inventoryItem in _player.CurrentLocation.VendorWorkingHere.Inventory)
+                        {
+                            if (inventoryItem.Details == itemToSell.Details)
+                            {
+                                inventoryItem.Quantity += sellQuantity;
+
+                                if (inventoryItem.Quantity <= 0)
+                                {
+                                    inventoryItem.Quantity = sellQuantity;
+                                }
+                            }
+                            if (inventoryItem == null)
+                            {
+                                _player.CurrentLocation.VendorWorkingHere.Inventory.Add(itemToSell.Details);
+                            }
+                        }
+
+                        Console.Write("You receive {0} ", sellQuantityPrice);
                         Console.Write("gold", Color.Gold);
-                        Console.Write(" for your {0}", itemToSell.Details.Name);
+                        Console.Write(" for your {0} {1}",sellQuantity, itemToSell.Details.Name);
                         Console.WriteLine("");
                     }
                 }
@@ -477,7 +527,7 @@ namespace RPG_Console
         private static void AttackMonster()
         {
             Console.WriteLine("");
-            if (_player.CurrentLocation.HasAMonster)
+            if (!_player.CurrentLocation.HasAMonster)
             {
                 Console.WriteLine("There is nothing here to attack");
             }

@@ -12,13 +12,21 @@
 
 //Weapons and attacks not showing with monster.
 
+//Add "how many" to number of items to buy/sell in CMD//
+
+//buy/sell more than one of one item to vender in CMD.//
+
+//"there is no vendor at this location" X2 when trying to sell to no vendor//
+
+//"there is nothing here to attack" after seeing a monster//
+
 //Clicking the "Use" button for weapons when finding a monster does nothing//	FIXED BUGS
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//remove item from vendor after purchase in GUI/CMD.
+//update vendor inventory after transactions
 
-//buy/sell more than one of one item to vender in GUI/CMD.
+//remove item from vendor after purchase in GUI/CMD.
 
 //Color cmd text for items, gold etc...
 
@@ -30,7 +38,7 @@
 
 //move inventory quantity over on cmd trade screen
 
-//"there is no vendor at this location" X2 when trying to sell to no vendor
+Randomize monster chance of appearing.
 
 //monsters should drop health potions
 
