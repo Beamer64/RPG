@@ -24,11 +24,19 @@
 
 //Randomize monster chance of appearing.//
 
+//add monster percent totals 100%
+  //i.e. locationPlace.AddMonster(MONSTER_ID_RAT, 70);
+	   //locationPlace.AddMonster(MONSTER_ID_SNAKE, 30);
+
+//monsters should drop health potions
+
 //Clicking the "Use" button for weapons when finding a monster does nothing//	FIXED BUGS
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //update vendor inventory after transactions
+
+//main menues do not work atm...
 
 //remove item from vendor after purchase in GUI.
 
@@ -36,14 +44,6 @@
 
 //figure out how to randomize vendors and vendor stock
 
-//add monster percent totals 100%
-  //i.e. locationPlace.AddMonster(MONSTER_ID_RAT, 70);
-	   //locationPlace.AddMonster(MONSTER_ID_SNAKE, 30);
-
 //Add gold to trade menue in CMD//
-
-
-
-//monsters should drop health potions
 
 //remove adventurer pass from the trade list
