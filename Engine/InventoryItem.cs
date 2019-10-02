@@ -45,7 +45,7 @@ namespace Engine
 
         public InventoryItem(Item details, int quantity)
         {
-            Details  = details;
+            Details = details;
             Quantity = quantity;
         }
 
