@@ -186,10 +186,10 @@ namespace RPG
             if (propertyChangedEventArgs.PropertyName == "CurrentLocation")
             {
                 // Show/hide available buttons
-                btnNorth.Visible = (_player.CurrentLocation.LocationToNorth != null);
-                btnEast.Visible = (_player.CurrentLocation.LocationToEast != null);
-                btnSouth.Visible = (_player.CurrentLocation.LocationToSouth != null);
-                btnWest.Visible = (_player.CurrentLocation.LocationToWest != null);
+                btnNorth.Visible = (_player.CurrentLocation.LocationToNorth   != null);
+                btnEast.Visible  = (_player.CurrentLocation.LocationToEast    != null);
+                btnSouth.Visible = (_player.CurrentLocation.LocationToSouth   != null);
+                btnWest.Visible  = (_player.CurrentLocation.LocationToWest    != null);
 
                 btnTrade.Visible = (_player.CurrentLocation.VendorWorkingHere != null);
 
@@ -243,3 +243,4 @@ namespace RPG
         }
     }
 }
+ 

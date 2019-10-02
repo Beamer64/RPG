@@ -18,7 +18,7 @@ namespace Engine
         {
             InventoryItem item = Inventory.SingleOrDefault(ii => ii.Details.ID == itemToAdd.ID);
 
-            if (item == null)
+            if(item == null)
             {
                 //player didnt have item
                 Inventory.Add(new InventoryItem(itemToAdd, quantity));
@@ -63,7 +63,7 @@ namespace Engine
 
         private void OnPropertyChanged(string name)
         {
-            if (PropertyChanged != null)
+            if(PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }

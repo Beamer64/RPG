@@ -1,11 +1,11 @@
-﻿using Engine;
-using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing;
+﻿using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using Engine;
+using System.Drawing;
 using Console = Colorful.Console;
+using System.Diagnostics;
+using System;
 
 namespace RPG_Console
 {
@@ -23,7 +23,7 @@ namespace RPG_Console
             LoadGameData();
 
             Console.WriteLine("Type 'Help' to see a list of commands");
-
+            
             DisplayCurrentLocation();
 
             // Connect player events to functions that will display in the UI
@@ -81,7 +81,7 @@ namespace RPG_Console
         }
 
         private static void ParseInput(string input)
-        {
+        {   
             //easter egg
             if (input.Contains("weast"))
             {
@@ -414,7 +414,7 @@ namespace RPG_Console
 
                             Console.WriteLine("");
 
-                            if (buyQuantity > itemToBuy.Quantity)
+                            if(buyQuantity > itemToBuy.Quantity)
                             {
                                 Console.WriteLine("The vendor does not have that many to sell.");
                                 Console.WriteLine("");
@@ -512,7 +512,7 @@ namespace RPG_Console
 
                         Console.Write("You receive {0} ", sellQuantityPrice);
                         Console.Write("gold", Color.Gold);
-                        Console.Write(" for your {0} {1}", sellQuantity, itemToSell.Details.Name);
+                        Console.Write(" for your {0} {1}",sellQuantity, itemToSell.Details.Name);
                         Console.WriteLine("");
                     }
                 }

@@ -55,8 +55,6 @@ namespace Intro_Screen
                 Hide();
                 rp.ShowDialog();
                 Close();
-
-                //Process.Start(rp.GUIReturnPath() + "\\RPG.exe");
             }
 #pragma warning disable CS0252
 

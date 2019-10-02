@@ -7,7 +7,7 @@
 
         public QuestCompletionItem(Item details, int quantity)
         {
-            Details = details;
+            Details  = details;
             Quantity = quantity;
         }
     }

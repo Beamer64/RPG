@@ -134,14 +134,14 @@ namespace RPG
 
         private void dgvVendorItems_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 3)
+            if(e.ColumnIndex == 3)
             {
                 var itemID = dgvVendorItems.Rows[e.RowIndex].Cells[0].Value;
 
                 Item itemBeingBought = World.ItemByID(Convert.ToInt32(itemID));
 
                 //checks is player has enough gold to buy the item
-                if (_currentPlayer.Gold >= itemBeingBought.Price)
+                if(_currentPlayer.Gold >= itemBeingBought.Price)
                 {
                     //removes gold = to item price
                     _currentPlayer.Gold -= itemBeingBought.Price;
