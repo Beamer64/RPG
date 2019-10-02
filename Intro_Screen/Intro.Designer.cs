@@ -59,17 +59,17 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(324, 106);
+            this.label1.Location = new System.Drawing.Point(248, 55);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(153, 20);
+            this.label1.Size = new System.Drawing.Size(302, 20);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Look at this thing!";
+            this.label1.Text = "TODO - Make this screen look cooler";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(350, 142);
+            this.label2.Location = new System.Drawing.Point(342, 148);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 20);
             this.label2.TabIndex = 3;
@@ -96,7 +96,7 @@
             this.Controls.Add(this.btnNewGame);
             this.Controls.Add(this.btnContinue);
             this.Name = "Intro";
-            this.Text = "Form1";
+            this.Text = "RPG - Main Menu";
             this.Load += new System.EventHandler(this.Intro_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

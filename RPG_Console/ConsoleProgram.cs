@@ -9,7 +9,7 @@ using System;
 
 namespace RPG_Console
 {
-    public class Program
+    public class ConsoleProgram
     {
         public const string PLAYER_DATA_FILE_NAME = "PlayerData.xml";
 
@@ -623,6 +623,11 @@ namespace RPG_Console
         private static void SaveGameData()
         {
             File.WriteAllText(PLAYER_DATA_FILE_NAME, _player.ToXmlString());
+        }
+        public string TextReturnPath()
+        {
+            string Textfolder = Environment.CurrentDirectory;
+            return Textfolder;
         }
     }
 }

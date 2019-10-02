@@ -13,7 +13,7 @@ namespace RPG
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new RPG());
+            Application.Run(new RPGForm());
         }
     }
 }

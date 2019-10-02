@@ -1,6 +1,6 @@
 ﻿namespace RPG
 {
-    partial class RPG
+    partial class RPGForm
     {
         /// <summary>
         /// Required designer variable.
@@ -314,7 +314,7 @@
             this.btnMainMenu.UseVisualStyleBackColor = true;
             this.btnMainMenu.Click += new System.EventHandler(this.BtnMainMenu_Click);
             // 
-            // RPG
+            // RPGForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -351,7 +351,7 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(738, 704);
             this.MinimumSize = new System.Drawing.Size(738, 704);
-            this.Name = "RPG";
+            this.Name = "RPGForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "RPG";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RPG_FormClosing);

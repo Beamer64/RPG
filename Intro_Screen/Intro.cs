@@ -3,14 +3,17 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using Engine;
-
+using RPG;
 
 namespace Intro_Screen
 
 {
     public partial class Intro : Form
     {
-        private Player _player;
+        private static Player _player;
+
+        RPG.RPGForm rp = new RPGForm();
+        RPG_Console.ConsoleProgram crp = new RPG_Console.ConsoleProgram();
 
         //xml file the player data will save to
         public const string PLAYER_DATA_FILE_NAME = "PlayerData.xml";
@@ -50,7 +53,7 @@ namespace Intro_Screen
                 File.Delete(PLAYER_DATA_FILE_NAME);
 
                 Close();
-                Process.Start("RPG.exe");  
+                Process.Start(rp.GUIReturnPath() + "\\RPG.exe");
             }
 #pragma warning disable CS0252
 
@@ -61,7 +64,7 @@ namespace Intro_Screen
                  File.Delete(PLAYER_DATA_FILE_NAME);
 
                 Close();
-                Process.Start("RPG_Console.exe");
+                Process.Start(crp.TextReturnPath() + "\\RPG_Console.exe");
             }
         }
 
@@ -78,7 +81,7 @@ namespace Intro_Screen
                     _player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
 
                     Close();
-                    Process.Start("RPG.exe");
+                    Process.Start(rp.GUIReturnPath() + "\\RPG.exe");
                 }
             }
 #pragma warning disable CS0252
@@ -92,9 +95,15 @@ namespace Intro_Screen
                     _player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
 
                     Close();
-                    Process.Start("RPG_Console.exe");
+                    Process.Start(crp.TextReturnPath() + "\\RPG_Console.exe");
                 }
             }
+        }
+
+        public string IntroReturnPath()
+        {
+            string Introfolder = Environment.CurrentDirectory;
+            return Introfolder;
         }
     }
 }

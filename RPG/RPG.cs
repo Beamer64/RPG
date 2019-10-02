@@ -6,16 +6,17 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
+
 namespace RPG
 {
-    public partial class RPG : Form
+    public partial class RPGForm : Form
     {
         private Player _player;
 
         //xml file the player data will save to
         public const string PLAYER_DATA_FILE_NAME = "PlayerData.xml";
 
-        public RPG()
+        public RPGForm()
         {
             InitializeComponent();
 
@@ -233,6 +234,12 @@ namespace RPG
         {
             Close();
             Process.Start("Intro_Screen.exe");
+        }
+
+        public string GUIReturnPath()
+        {
+            string GUIfolder = Environment.CurrentDirectory;
+            return GUIfolder;
         }
     }
 }
