@@ -136,7 +136,7 @@ namespace RPG_Console
             {
                 SaveGameData();
                 running = false;
-                Process.Start("RPG_HR.exe");
+                Process.Start("Intro_Screen.exe");
             }
 
             else if (input == "stats")

@@ -233,7 +233,13 @@ namespace RPG
         private void BtnMainMenu_Click(object sender, EventArgs e)
         {
             Close();
-            Process.Start("RPG_HR.exe");
+            //Process.Start("Intro_Screen.exe");
+        }
+
+        public string GUIReturnPath()
+        {
+            string GUIfolder = Environment.CurrentDirectory;
+            return GUIfolder;
         }
     }
 }
