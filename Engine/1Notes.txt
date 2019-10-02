@@ -36,13 +36,13 @@
 
 //update vendor inventory after transactions
 
-//main menues do not work atm...
+//main menues do not work atm...not return to main menu
 
 //remove item from vendor after purchase in GUI.
 
 //Color cmd text for items, gold etc...
 
-//figure out how to randomize vendors and vendor stock
+//randomize vendors and vendor stock
 
 //Add gold to trade menue in CMD//
 

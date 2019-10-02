@@ -12,7 +12,7 @@ namespace Intro_Screen
     {
         private static Player _player;
 
-        RPG.RPGForm rp = new RPGForm();
+        RPGForm rp = new RPGForm();
         RPG_Console.ConsoleProgram crp = new RPG_Console.ConsoleProgram();
 
         //xml file the player data will save to
@@ -52,8 +52,11 @@ namespace Intro_Screen
             {
                 File.Delete(PLAYER_DATA_FILE_NAME);
 
+                Hide();
+                rp.ShowDialog();
                 Close();
-                Process.Start(rp.GUIReturnPath() + "\\RPG.exe");
+
+                //Process.Start(rp.GUIReturnPath() + "\\RPG.exe");
             }
 #pragma warning disable CS0252
 
@@ -63,8 +66,9 @@ namespace Intro_Screen
             {
                  File.Delete(PLAYER_DATA_FILE_NAME);
 
-                Close();
+                Hide();
                 Process.Start(crp.TextReturnPath() + "\\RPG_Console.exe");
+                Close();
             }
         }
 
@@ -80,8 +84,9 @@ namespace Intro_Screen
                 {
                     _player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
 
+                    Hide();
+                    rp.ShowDialog();
                     Close();
-                    Process.Start(rp.GUIReturnPath() + "\\RPG.exe");
                 }
             }
 #pragma warning disable CS0252
@@ -94,8 +99,9 @@ namespace Intro_Screen
                 {
                     _player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
 
-                    Close();
+                    Hide();
                     Process.Start(crp.TextReturnPath() + "\\RPG_Console.exe");
+                    Close();
                 }
             }
         }

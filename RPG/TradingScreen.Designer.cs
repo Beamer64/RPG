@@ -57,6 +57,8 @@
             // 
             // dgvVendorItems
             // 
+            this.dgvVendorItems.AllowUserToResizeColumns = false;
+            this.dgvVendorItems.AllowUserToResizeRows = false;
             this.dgvVendorItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVendorItems.Location = new System.Drawing.Point(276, 43);
             this.dgvVendorItems.Name = "dgvVendorItems";
@@ -65,6 +67,8 @@
             // 
             // dgvMyItems
             // 
+            this.dgvMyItems.AllowUserToResizeColumns = false;
+            this.dgvMyItems.AllowUserToResizeRows = false;
             this.dgvMyItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMyItems.Location = new System.Drawing.Point(13, 43);
             this.dgvMyItems.Name = "dgvMyItems";

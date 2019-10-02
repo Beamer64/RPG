@@ -52,6 +52,7 @@
     <Compile Include="LootItem.cs" />
     <Compile Include="MessageEventArgs.cs" />
     <Compile Include="Monster.cs" />
+    <Compile Include="Narrative.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerQuest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,6 +5,8 @@ namespace Engine
 {
     public static class World
     {
+        private static Narrative narrative = new Narrative();
+
         public static readonly List<Item>     _items     = new List<Item>();
         public static readonly List<Monster>  _monsters  = new List<Monster>();
         public static readonly List<Quest>    _quests    = new List<Quest>();
@@ -127,23 +129,23 @@ namespace Engine
             bobTheRatCatcher.AddItemToInventory(ItemByID(ITEM_ID_HEALING_POTION), 1);
 
             //Creats each location
-            Location home = new Location(LOCATION_ID_HOME, "Home:", "You wake up at your house hungover and confused. You are curious about this rusty sword in your hand. Everything is oddly quiet.");
+            Location home = new Location(LOCATION_ID_HOME, "Home:", narrative.HomeDetail);
 
-            Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square:", "I wonder where everyone is..");
+            Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Town square:", narrative.TownSqrDetail);
 
-            Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's hut:", "There are many strange plants on the shelves.");
+            Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Alchemist's hut:", narrative.AlchemistHutDetail);
 
-            Location alchemistsGarden = new Location(LOCATION_ID_ALCHEMISTS_GARDEN, "Alchemist's garden:", "Many plants are growing here.");
+            Location alchemistsGarden = new Location(LOCATION_ID_ALCHEMISTS_GARDEN, "Alchemist's garden:", narrative.AlchemistGardenDetail);
 
-            Location farmhouse = new Location(LOCATION_ID_FARMHOUSE, "Farmhouse:", "There is a small farmhouse, with a farmer in front.");
+            Location farmhouse = new Location(LOCATION_ID_FARMHOUSE, "Farmhouse:", narrative.FarmhouseDetail);
 
-            Location farmersField = new Location(LOCATION_ID_FARM_FIELD, "Farmer's field:", "You see rows of vegetables growing here.");
+            Location farmersField = new Location(LOCATION_ID_FARM_FIELD, "Farmer's field:", narrative.FarmerFieldDetail);
 
-            Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post:", "There is a large, tough-looking guard here.", ItemByID(ITEM_ID_ADVENTURER_PASS));
+            Location guardPost = new Location(LOCATION_ID_GUARD_POST, "Guard post:", narrative.GaurdPostDetail, ItemByID(ITEM_ID_ADVENTURER_PASS));
 
-            Location bridge = new Location(LOCATION_ID_BRIDGE, "Bridge:", "A stone bridge crosses a wide river.");
+            Location bridge = new Location(LOCATION_ID_BRIDGE, "Bridge:", narrative.BridgeDetail);
 
-            Location spiderField = new Location(LOCATION_ID_SPIDER_FIELD, "Forest:", "You see spider webs covering covering the trees in this forest.");
+            Location spiderField = new Location(LOCATION_ID_SPIDER_FIELD, "Forest:", narrative.ForrestDetail);
 
 
             //Adds Quests to loactaions
