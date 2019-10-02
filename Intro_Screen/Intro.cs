@@ -12,7 +12,6 @@ namespace Intro_Screen
     {
         private static Player _player;
 
-        RPGForm rp = new RPGForm();
         RPG_Console.ConsoleProgram crp = new RPG_Console.ConsoleProgram();
 
         //xml file the player data will save to
@@ -45,24 +44,20 @@ namespace Intro_Screen
         private void BtnNewGame_Click(object sender, EventArgs e)
         {
 #pragma warning disable CS0252
-
             if (cboStyle.SelectedItem == "GUI Based Gameplay")
-
 #pragma warning restore CS0252 
             {
                 File.Delete(PLAYER_DATA_FILE_NAME);
 
                 Hide();
-                rp.ShowDialog();
+                Process.Start("RPG.exe");
                 Close();
             }
 #pragma warning disable CS0252
-
             if (cboStyle.SelectedItem == "Text Based Gameplay")
-
 #pragma warning restore CS0252
             {
-                 File.Delete(PLAYER_DATA_FILE_NAME);
+                File.Delete(PLAYER_DATA_FILE_NAME);
 
                 Hide();
                 Process.Start(crp.TextReturnPath() + "\\RPG_Console.exe");
@@ -73,9 +68,7 @@ namespace Intro_Screen
         private void BtnContinue_Click(object sender, EventArgs e)
         {
 #pragma warning disable CS0252
-
             if (cboStyle.SelectedItem == "GUI Based Gameplay")
-
 #pragma warning restore CS0252 
             {
                 if (File.Exists(PLAYER_DATA_FILE_NAME))
@@ -83,14 +76,12 @@ namespace Intro_Screen
                     _player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
 
                     Hide();
-                    rp.ShowDialog();
+                    Process.Start("RPG.exe");
                     Close();
                 }
             }
 #pragma warning disable CS0252
-
             if (cboStyle.SelectedItem == "Text Based Gameplay")
-
 #pragma warning restore CS0252
             {
                 if (File.Exists(PLAYER_DATA_FILE_NAME))
@@ -102,12 +93,6 @@ namespace Intro_Screen
                     Close();
                 }
             }
-        }
-
-        public string IntroReturnPath()
-        {
-            string Introfolder = Environment.CurrentDirectory;
-            return Introfolder;
         }
     }
 }
