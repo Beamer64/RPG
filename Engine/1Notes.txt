@@ -30,6 +30,8 @@
 
 //monsters should drop health potions
 
+//Add gold to trade menue in CMD//
+
 //main menues do not work atm...not return to main menu
 
 //Clicking the "Use" button for weapons when finding a monster does nothing//	FIXED BUGS
@@ -43,7 +45,5 @@
 //Color cmd text for items, gold etc...
 
 //randomize vendors and vendor stock
-
-//Add gold to trade menue in CMD//
 
 //remove adventurer pass from the trade list

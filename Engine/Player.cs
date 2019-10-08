@@ -226,6 +226,7 @@ namespace Engine
             if (PlayerDoesNotHaveTheRequiredItemToEnter(location))
             {
                 RaiseMessage("You must have a " + location.ItemRequiredToEnter.Name + " to enter this location.");
+                RaiseMessage("");
                 return;
             }
 
