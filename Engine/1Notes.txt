@@ -30,13 +30,13 @@
 
 //monsters should drop health potions
 
+//main menues do not work atm...not return to main menu
+
 //Clicking the "Use" button for weapons when finding a monster does nothing//	FIXED BUGS
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //update vendor inventory after transactions
-
-//main menues do not work atm...not return to main menu
 
 //remove item from vendor after purchase in GUI.
 
