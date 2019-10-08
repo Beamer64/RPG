@@ -310,8 +310,10 @@ namespace RPG_Console
             {
 
                 Console.WriteLine("PLAYER INVENTORY");
-                Console.WriteLine("================");
-
+                Console.Write("================ ");
+                Console.Write("Gold: ", Color.Gold);
+                Console.WriteLine(_player.Gold, Color.Gold);
+                    
                 if (_player.Inventory.Count(x => x.Price != World.UNSELLABLE_ITEM_PRICE) == 0)
                 {
                     Console.WriteLine("You do not have any inventory items");
