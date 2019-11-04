@@ -64,8 +64,6 @@ namespace RPG
             // Bind the player's inventory to the datagridview 
             dgvMyItems.DataSource = _currentPlayer.Inventory;
 
-            
-
             // When the user clicks on a row, call this function
             dgvMyItems.CellClick += dgvMyItems_CellClick;
 

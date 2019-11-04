@@ -47,3 +47,5 @@
 //randomize vendors and vendor stock
 
 //remove adventurer pass from the trade list
+
+//change start game windo positions

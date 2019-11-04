@@ -10,7 +10,9 @@ namespace Engine
     {
         private int _gold;
         private int _experiencePoints;
+
         private Location _currentLocation;
+        private Armor _armor;
 
         public event EventHandler<MessageEventArgs> OnMessage;
 
@@ -233,6 +235,7 @@ namespace Engine
             // Update the player's current location
             CurrentLocation = location;
 
+            //Heals the player upon new area entry
             CompletelyHeal();
 
             // Does the location have a quest?
@@ -332,7 +335,7 @@ namespace Engine
 
         private void LetTheMonsterAttack()
         {
-            int damageToPlayer = RandomNumberGenerator.NumberBetween(0, CurrentMonster.MaximumDamage);
+            int damageToPlayer = RandomNumberGenerator.NumberBetween(0, CurrentMonster.MaximumDamage) - RandomNumberGenerator.NumberBetween(0, _armor.MaximumDefense);
 
             RaiseMessage("The " + CurrentMonster.Name + " did " + damageToPlayer + " points of damage.");
 

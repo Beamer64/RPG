@@ -15,16 +15,24 @@ namespace Engine
         public const int UNSELLABLE_ITEM_PRICE = -1;
 
         //ITEMS LIST
-        public const int ITEM_ID_RUSTY_SWORD = 1;
-        public const int ITEM_ID_RAT_TAIL = 2;
-        public const int ITEM_ID_PIECE_OF_FUR = 3;
-        public const int ITEM_ID_SNAKE_FANG = 4;
-        public const int ITEM_ID_SNAKESKIN = 5;
-        public const int ITEM_ID_CLUB = 6;
-        public const int ITEM_ID_HEALING_POTION = 7;
-        public const int ITEM_ID_SPIDER_FANG = 8;
-        public const int ITEM_ID_SPIDER_SILK = 9;
-        public const int ITEM_ID_ADVENTURER_PASS = 10;
+        public const int ITEM_ID_RAT_TAIL = 1;
+        public const int ITEM_ID_PIECE_OF_FUR = 2;
+        public const int ITEM_ID_SNAKE_FANG = 3;
+        public const int ITEM_ID_SNAKESKIN = 4;
+        public const int ITEM_ID_SPIDER_FANG = 5;
+        public const int ITEM_ID_SPIDER_SILK = 6;
+        public const int ITEM_ID_ADVENTURER_PASS = 7;
+
+        //WEAPON LIST
+        public const int ITEM_ID_RUSTY_SWORD = 8;
+        public const int ITEM_ID_CLUB = 9;
+
+        //ARMOR LIST
+        public const int ITEM_ID_RUSTY_SHIELD = 10;
+        public const int ITEM_ID_LEATHER_CHEST = 11;
+
+        //POTION LIST
+        public const int ITEM_ID_HEALING_POTION = 12;
 
         //MONSTER LIST
         public const int MONSTER_ID_RAT = 1;
@@ -60,6 +68,9 @@ namespace Engine
         {
             _items.Add(new Weapon(ITEM_ID_RUSTY_SWORD, "Rusty Sword", "Rusty Swords", 0, 5, 5));
             _items.Add(new Weapon(ITEM_ID_CLUB, "Club", "Clubs", 3, 10, 8));
+
+            _items.Add(new Armor(ITEM_ID_RUSTY_SHIELD, "Shield", "Rusty Shield", 8, 5));
+            _items.Add(new Armor(ITEM_ID_LEATHER_CHEST, "Leather Chest Piece", "Basic Leather Chest Piece", 4, 5));
 
             _items.Add(new Item(ITEM_ID_RAT_TAIL, "Rat tail", "Rat tails", 1));
             _items.Add(new Item(ITEM_ID_PIECE_OF_FUR, "Piece of fur", "Peices of fur", 1));
@@ -127,6 +138,8 @@ namespace Engine
             bobTheRatCatcher.AddItemToInventory(ItemByID(ITEM_ID_PIECE_OF_FUR), 5);
             bobTheRatCatcher.AddItemToInventory(ItemByID(ITEM_ID_RAT_TAIL), 3);
             bobTheRatCatcher.AddItemToInventory(ItemByID(ITEM_ID_HEALING_POTION), 1);
+            bobTheRatCatcher.AddItemToInventory(ItemByID(ITEM_ID_RUSTY_SHIELD), 1);
+            bobTheRatCatcher.AddItemToInventory(ItemByID(ITEM_ID_LEATHER_CHEST), 1);
 
             //Creats each location
             Location home = new Location(LOCATION_ID_HOME, "Home:", narrative.HomeDetail);
