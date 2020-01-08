@@ -1,6 +1,6 @@
 ﻿namespace Engine
 {
-    class Armor : Item
+    public class Armor : Item
     {
         public int MaximumDefense { get; set; }
 
