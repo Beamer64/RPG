@@ -12,7 +12,6 @@ namespace Engine
         private int _experiencePoints;
 
         private Location _currentLocation;
-        public Armor CurrentArmor { get; set; }
 
         public event EventHandler<MessageEventArgs> OnMessage;
 
@@ -74,7 +73,6 @@ namespace Engine
         {
             Gold = gold;
             ExperiencePoints = experiencePoints;
-            CurrentArmor.MaximumDefense = currentArmor;
 
             Inventory = new BindingList<InventoryItem>();
             Quests = new BindingList<PlayerQuest>();
@@ -335,7 +333,8 @@ namespace Engine
 
         private void LetTheMonsterAttack()
         {
-            int damageToPlayer = RandomNumberGenerator.NumberBetween(0, CurrentMonster.MaximumDamage) - RandomNumberGenerator.NumberBetween(0, CurrentArmor.MaximumDefense);
+            //amount of damage delt from the monster
+            int damageToPlayer = RandomNumberGenerator.NumberBetween(0, CurrentMonster.MaximumDamage);
 
             RaiseMessage("The " + CurrentMonster.Name + " did " + damageToPlayer + " points of damage.");
 

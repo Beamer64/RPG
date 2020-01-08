@@ -69,9 +69,6 @@ namespace Engine
             _items.Add(new Weapon(ITEM_ID_RUSTY_SWORD, "Rusty Sword", "Rusty Swords", 0, 5, 5));
             _items.Add(new Weapon(ITEM_ID_CLUB, "Club", "Clubs", 3, 10, 8));
 
-            _items.Add(new Armor(ITEM_ID_RUSTY_SHIELD, "Shield", "Rusty Shield", 8, 5));
-            _items.Add(new Armor(ITEM_ID_LEATHER_CHEST, "Leather Chest Piece", "Basic Leather Chest Piece", 4, 5));
-
             _items.Add(new Item(ITEM_ID_RAT_TAIL, "Rat tail", "Rat tails", 1));
             _items.Add(new Item(ITEM_ID_PIECE_OF_FUR, "Piece of fur", "Peices of fur", 1));
             _items.Add(new Item(ITEM_ID_SNAKE_FANG, "Snake fang", "Snake fangs", 1));

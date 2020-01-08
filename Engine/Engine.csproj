@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Armor.cs" />
     <Compile Include="HealingPotion.cs" />
     <Compile Include="InventoryItem.cs" />
     <Compile Include="Item.cs" />
