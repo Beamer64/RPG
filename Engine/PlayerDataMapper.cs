@@ -13,36 +13,27 @@ namespace Engine
         {
             try
             {
-                // This is our connection to the database
                 using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
                 {
-                    // Open the connection, so we can perform SQL commands
                     connection.Open();
 
                     Player player;
 
-                    // Create a SQL command object, that uses the connection to our database
-                    // The SqlCommand object is where we create our SQL statement
                     using (NpgsqlCommand savedGameCommand = connection.CreateCommand())
                     {
                         savedGameCommand.CommandType = CommandType.Text;
-                        // This SQL statement reads the first rows in teh SavedGame table.
-                        // For this program, we should only ever have one row,
-                        // but this will ensure we only get one record in our SQL query results.
+                        // reads the first rows in the SavedGame table.
                         savedGameCommand.CommandText = "SELECT TOP 1 * FROM SavedGame";
 
-                        // Use ExecuteReader when you expect the query to return a row, or rows
+                        // Use when you expect the query to return a row, or rows
                         NpgsqlDataReader reader = savedGameCommand.ExecuteReader();
 
                         // Check if the query did not return a row/record of data
                         if (!reader.HasRows)
                         {
-                            // There is no data in the SavedGame table, 
-                            // so return null (no saved player data)
                             return null;
                         }
 
-                        // Get the row/record from the data reader
                         reader.Read();
 
                         // Get the column values for the row/record
@@ -73,16 +64,16 @@ namespace Engine
                                 bool isCompleted = (bool)reader["IsCompleted"];
 
                                 // Build the PlayerQuest item, for this row
-                                PlayerQuest playerQuest = new PlayerQuest(World.QuestByID(questID));
-                                playerQuest.IsCompleted = isCompleted;
+                                PlayerQuest playerQuest = new PlayerQuest(World.QuestByID(questID))
+                                {
+                                    IsCompleted = isCompleted
+                                };
 
-                                // Add the PlayerQuest to the player's property
                                 player.Quests.Add(playerQuest);
                             }
                         }
                     }
 
-                    // Read the rows/records from the Inventory table, and add them to the player
                     using (NpgsqlCommand inventoryCommand = connection.CreateCommand())
                     {
                         inventoryCommand.CommandType = CommandType.Text;
@@ -103,13 +94,12 @@ namespace Engine
                         }
                     }
 
-                    // Now that the player has been built from the database, return it.
                     return player;
                 }
             }
             catch (Exception ex)
             {
-                // Ignore errors. If there is an error, this function will return a "null" player.
+                //returns null player...hopefully
             }
 
             return null;
@@ -121,21 +111,17 @@ namespace Engine
             {
                 using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
                 {
-                    // Open the connection, so we can perform SQL commands
                     connection.Open();
 
-                    // Insert/Update data in SavedGame table
                     using (NpgsqlCommand existingRowCountCommand = connection.CreateCommand())
                     {
                         existingRowCountCommand.CommandType = CommandType.Text;
                         existingRowCountCommand.CommandText = "SELECT count(*) FROM SavedGame";
 
-                        // Use ExecuteScalar when your query will return one value
                         int existingRowCount = (int)existingRowCountCommand.ExecuteScalar();
 
                         if (existingRowCount == 0)
                         {
-                            // There is no existing row, so do an INSERT
                             using (NpgsqlCommand insertSavedGame = connection.CreateCommand())
                             {
                                 insertSavedGame.CommandType = CommandType.Text;
@@ -148,23 +134,26 @@ namespace Engine
                                 // Pass the values from the player object, to the SQL query, using parameters
                                 insertSavedGame.Parameters.Add("@CurrentHitPoints", NpgsqlDbType.Integer);
                                 insertSavedGame.Parameters["@CurrentHitPoints"].Value = player.CurrentHitPoints;
+
                                 insertSavedGame.Parameters.Add("@MaximumHitPoints", NpgsqlDbType.Integer);
                                 insertSavedGame.Parameters["@MaximumHitPoints"].Value = player.MaximumHitPoints;
+
                                 insertSavedGame.Parameters.Add("@Gold", NpgsqlDbType.Integer);
                                 insertSavedGame.Parameters["@Gold"].Value = player.Gold;
+
                                 insertSavedGame.Parameters.Add("@ExperiencePoints", NpgsqlDbType.Integer);
                                 insertSavedGame.Parameters["@ExperiencePoints"].Value = player.ExperiencePoints;
+
                                 insertSavedGame.Parameters.Add("@CurrentLocationID", NpgsqlDbType.Integer);
                                 insertSavedGame.Parameters["@CurrentLocationID"].Value = player.CurrentLocation.ID;
 
-                                // Perform the SQL command.
-                                // Use ExecuteNonQuery, because this query does not return any results.
+                                //insert new values
                                 insertSavedGame.ExecuteNonQuery();
                             }
                         }
                         else
                         {
-                            // There is an existing row, so do an UPDATE
+                            // update command
                             using (NpgsqlCommand updateSavedGame = connection.CreateCommand())
                             {
                                 updateSavedGame.CommandType = CommandType.Text;
@@ -176,32 +165,26 @@ namespace Engine
                                     "ExperiencePoints = @ExperiencePoints, " +
                                     "CurrentLocationID = @CurrentLocationID";
 
-                                // Pass the values from the player object, to the SQL query, using parameters
-                                // Using parameters helps make your program more secure.
-                                // It will prevent SQL injection attacks.
                                 updateSavedGame.Parameters.Add("@CurrentHitPoints", NpgsqlDbType.Integer);
                                 updateSavedGame.Parameters["@CurrentHitPoints"].Value = player.CurrentHitPoints;
+
                                 updateSavedGame.Parameters.Add("@MaximumHitPoints", NpgsqlDbType.Integer);
                                 updateSavedGame.Parameters["@MaximumHitPoints"].Value = player.MaximumHitPoints;
+
                                 updateSavedGame.Parameters.Add("@Gold", NpgsqlDbType.Integer);
                                 updateSavedGame.Parameters["@Gold"].Value = player.Gold;
+
                                 updateSavedGame.Parameters.Add("@ExperiencePoints", NpgsqlDbType.Integer);
                                 updateSavedGame.Parameters["@ExperiencePoints"].Value = player.ExperiencePoints;
+
                                 updateSavedGame.Parameters.Add("@CurrentLocationID", NpgsqlDbType.Integer);
                                 updateSavedGame.Parameters["@CurrentLocationID"].Value = player.CurrentLocation.ID;
 
-                                // Perform the SQL command.
-                                // Use ExecuteNonQuery, because this query does not return any results.
+                                //insert new values
                                 updateSavedGame.ExecuteNonQuery();
                             }
                         }
                     }
-
-                    // The Quest and Inventory tables might have more, or less, rows in the database
-                    // than what the player has in their properties.
-                    // So, when we save the player's game, we will delete all the old rows
-                    // and add in all new rows.
-                    // This is easier than trying to add/delete/update each individual rows
 
                     // Delete existing Quest rows
                     using (NpgsqlCommand deleteQuestsCommand = connection.CreateCommand())
@@ -212,7 +195,7 @@ namespace Engine
                         deleteQuestsCommand.ExecuteNonQuery();
                     }
 
-                    // Insert Quest rows, from the player object
+                    // Insert new Quest rows, from the player object
                     foreach (PlayerQuest playerQuest in player.Quests)
                     {
                         using (NpgsqlCommand insertQuestCommand = connection.CreateCommand())
@@ -238,7 +221,7 @@ namespace Engine
                         deleteInventoryCommand.ExecuteNonQuery();
                     }
 
-                    // Insert Inventory rows, from the player object
+                    // Insert new Inventory rows, from the player object
                     foreach (InventoryItem inventoryItem in player.Inventory)
                     {
                         using (NpgsqlCommand insertInventoryCommand = connection.CreateCommand())
@@ -258,7 +241,7 @@ namespace Engine
             }
             catch (Exception ex)
             {
-                // We are going to ignore erros, for now.
+                //error
             }
         }
     }
