@@ -150,6 +150,15 @@ namespace Engine
             }
         }
 
+        public static Player CreatePlayerFromDatabase(int currentHitPoints, int maximumHitPoints, int gold, int experiencePoints, int currentLocationID)
+        {
+            Player player = new Player(currentHitPoints, maximumHitPoints, gold, experiencePoints);
+
+            player.MoveTo(World.LocationByID(currentLocationID));
+
+            return player;
+        }
+
         //saves player data to xml file
         public string ToXmlString()
         {
