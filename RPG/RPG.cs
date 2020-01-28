@@ -20,13 +20,18 @@ namespace RPG
         {
             InitializeComponent();
 
-            if (File.Exists(PLAYER_DATA_FILE_NAME))
+            _player = PlayerDataMapper.CreateFromDatabase();
+
+            if (_player == null)
             {
-                _player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
-            }
-            else
-            {
-                _player = Player.CreateDefaultPlayer();
+                if (File.Exists(PLAYER_DATA_FILE_NAME))
+                {
+                    _player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
+                }
+                else
+                {
+                    _player = Player.CreateDefaultPlayer();
+                }
             }
 
             //updates UI labels to show current player stats
@@ -222,6 +227,7 @@ namespace RPG
         private void RPG_FormClosing(object sender, FormClosingEventArgs e)
         {
             File.WriteAllText(PLAYER_DATA_FILE_NAME, _player.ToXmlString());
+            PlayerDataMapper.SaveToDatabase(_player);
         }
 
         private void RtbMessages_TextChanged(object sender, EventArgs e)
