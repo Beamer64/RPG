@@ -7,7 +7,7 @@ namespace Engine
 {
     public static class PlayerDataMapper
     {
-        private static readonly string _connectionString = "User ID=root;Password=password;Host=localhost;Port=5432;Database=RPG;";
+        private static readonly string _connectionString = "Id=postgres;Password=password;Host=localhost;Port=5432;Database=RPG;";
 
         public static Player CreateFromDatabase()
         {

@@ -1,4 +1,6 @@
 ﻿using Engine;
+using RPG;
+using RPG_Console;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -11,7 +13,11 @@ namespace Intro_Screen
     {
         private static Player _player;
 
-        RPG_Console.ConsoleProgram crp = new RPG_Console.ConsoleProgram();
+        //Console Program
+        ConsoleProgram crp = new ConsoleProgram();
+
+        //GUI Program
+        RPGForm rpgForm = new RPGForm();
 
         //xml file the player data will save to
         public const string PLAYER_DATA_FILE_NAME = "PlayerData.xml";
@@ -20,13 +26,25 @@ namespace Intro_Screen
         {
             InitializeComponent();
 
-            if (File.Exists(PLAYER_DATA_FILE_NAME))
+            _player = PlayerDataMapper.CreateFromDatabase();
+
+            if (_player == null)
             {
-                btnContinue.Enabled = true;
+                btnContinue.Enabled = false;
+                /*
+                if (File.Exists(PLAYER_DATA_FILE_NAME))
+                {
+                    btnContinue.Enabled = true;
+                }
+                else
+                {
+                    btnContinue.Enabled = false;
+                }
+                */
             }
             else
             {
-                btnContinue.Enabled = false;
+                btnContinue.Enabled = true;
             }
         }
 
@@ -49,8 +67,7 @@ namespace Intro_Screen
                 File.Delete(PLAYER_DATA_FILE_NAME);
 
                 Hide();
-                Process.Start("RPG.exe");
-                Close();
+                rpgForm.Show();
             }
 #pragma warning disable CS0252
             if (cboStyle.SelectedItem == "Text Based Gameplay")
@@ -60,7 +77,6 @@ namespace Intro_Screen
 
                 Hide();
                 Process.Start(crp.TextReturnPath() + "\\RPG_Console.exe");
-                Close();
             }
         }
 
@@ -70,14 +86,16 @@ namespace Intro_Screen
             if (cboStyle.SelectedItem == "GUI Based Gameplay")
 #pragma warning restore CS0252 
             {
+                _player = PlayerDataMapper.CreateFromDatabase();
+                /*
                 if (File.Exists(PLAYER_DATA_FILE_NAME))
                 {
                     _player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
 
                     Hide();
-                    Process.Start("RPG.exe");
-                    Close();
+                    rpgForm.Show();
                 }
+                */
             }
 #pragma warning disable CS0252
             if (cboStyle.SelectedItem == "Text Based Gameplay")
@@ -89,7 +107,6 @@ namespace Intro_Screen
 
                     Hide();
                     Process.Start(crp.TextReturnPath() + "\\RPG_Console.exe");
-                    Close();
                 }
             }
         }

@@ -1,7 +1,7 @@
 ﻿using Engine;
+using RPG;
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -15,10 +15,13 @@ namespace RPG_Console
 
         private static Player _player;
 
+        private static RPGForm rpgForm = new RPGForm();
+
         public static bool running = true;
 
         private static void Main(string[] args)
         {
+
             // Load the player
             LoadGameData();
 
@@ -132,11 +135,13 @@ namespace RPG_Console
                 DisplayHelpText();
             }
 
-            else if (input.Contains("menu"))
+            else if (input.Contains("gui"))
             {
                 SaveGameData();
                 running = false;
-                Process.Start("RPG_HR.exe");
+                //Process.Start("RPG_HR.exe");
+                
+                rpgForm.Show();
             }
 
             else if (input == "stats")
@@ -313,7 +318,7 @@ namespace RPG_Console
                 Console.Write("================ ");
                 Console.Write("Gold: ", Color.Gold);
                 Console.WriteLine(_player.Gold, Color.Gold);
-                    
+
                 if (_player.Inventory.Count(x => x.Price != World.UNSELLABLE_ITEM_PRICE) == 0)
                 {
                     Console.WriteLine("You do not have any inventory items");
@@ -609,6 +614,8 @@ namespace RPG_Console
 
         private static void LoadGameData()
         {
+            _player = PlayerDataMapper.CreateFromDatabase();
+
             if (_player == null)
             {
                 if (File.Exists(PLAYER_DATA_FILE_NAME))
@@ -625,6 +632,7 @@ namespace RPG_Console
         private static void SaveGameData()
         {
             File.WriteAllText(PLAYER_DATA_FILE_NAME, _player.ToXmlString());
+            PlayerDataMapper.SaveToDatabase(_player);
         }
         public string TextReturnPath()
         {

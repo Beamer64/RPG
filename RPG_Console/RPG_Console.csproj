@@ -94,6 +94,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -113,6 +114,10 @@
     <ProjectReference Include="..\Engine\Engine.csproj">
       <Project>{fea74e23-fa67-4aaf-b159-272b0584b3f7}</Project>
       <Name>Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RPG\RPG.csproj">
+      <Project>{f7be60eb-bc8a-4216-ae1b-3f2ee4c4a104}</Project>
+      <Name>RPG</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

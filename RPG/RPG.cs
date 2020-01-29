@@ -2,7 +2,6 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -22,6 +21,11 @@ namespace RPG
 
             _player = PlayerDataMapper.CreateFromDatabase();
 
+            if(_player == null)
+            {
+                _player = Player.CreateDefaultPlayer();
+            }
+            /*
             if (_player == null)
             {
                 if (File.Exists(PLAYER_DATA_FILE_NAME))
@@ -33,6 +37,7 @@ namespace RPG
                     _player = Player.CreateDefaultPlayer();
                 }
             }
+            */
 
             //updates UI labels to show current player stats
             lblHitPoints.DataBindings.Add("Text", _player, "CurrentHitPoints");
@@ -226,7 +231,7 @@ namespace RPG
 
         private void RPG_FormClosing(object sender, FormClosingEventArgs e)
         {
-            File.WriteAllText(PLAYER_DATA_FILE_NAME, _player.ToXmlString());
+            //File.WriteAllText(PLAYER_DATA_FILE_NAME, _player.ToXmlString());
             PlayerDataMapper.SaveToDatabase(_player);
         }
 
@@ -238,7 +243,8 @@ namespace RPG
 
         private void BtnMainMenu_Click(object sender, EventArgs e)
         {
-            Close();
+            //Close();
+            Show();
             Process.Start("RPG_HR.exe");
         }
     }
