@@ -38,10 +38,7 @@ namespace RPG_Console
             {
                 SaveGameData();
 
-                // Display a prompt, so the user knows to type something
                 Console.Write(">");
-
-                // Wait for the user to type something, and press the <Enter> key
                 string userInput = Console.ReadLine();
 
                 // If they typed a blank line, loop back and wait for input again
@@ -139,7 +136,6 @@ namespace RPG_Console
             {
                 SaveGameData();
                 running = false;
-                //Process.Start("RPG_HR.exe");
                 
                 rpgForm.Show();
             }
